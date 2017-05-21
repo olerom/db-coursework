@@ -116,13 +116,14 @@
 \newpage
 
 \section{Введение}
-Базы данных используются повсюду.
-Начиная от баз данных маленькой школы и заканчивая большими дата-центрами больших компаний.
-Реляционные базы данных может быть неплохо использована в такой области деятельности, как автомобилестроительное предприятие.
+В современном мире человек буквально на каждом шагу сталкивается с различными информационными системами.
+Начиная от базы данных маленькой школы и заканчивая большими дата-центрами больших компаний.
+Однако чем больше необходимо хранить информации, тем больше ее необходимо грамотно (нормализованно) хранить.
+Система управления базами данных (СУБД) позволяет создать базу данных, хранить и обновлять в ней данные, а также
+СУБД Oracle может быть использована в такой области деятельности, как автомобилестроительное предприятие.
 Что я и покажу в данной курсовой работе.
 
-Целью данной работы является спроектировать информационную систему автомобилестроительного предприятия по заданным бизнес-правилам.
-Проверить корректность решения, используя набор программ ERwin (Data Modeler r9, AllFusion Data Model Validator r7).
+Целью данной работы является спроектировать информационную систему автомобилестроительного предприятия, учитывая техническое задание.
 
 Задачи, которые необходимо выполнить для достижения поставленной цели, перечислены в задании на проектирование.
 
@@ -884,6 +885,8 @@
 
 \section {Отчёт по замечаниям ERwin Data Model Validator}
 
+\includegraphics[height=7cm]{./screenshots/validator/validator.png}
+
 ERwin Data Model Validator выдает ошибку Infinite Loop.
 Это связано с тем, что отношения Бригада и Рабочий имеют две связи один ко многим.
 Так как по условию нам дано следующее: рабочие объединяются в бригады, которыми руководят бригадиры, а бригадиры выбираются из числа рабочих.
@@ -897,7 +900,7 @@ Infinite Loop же обошел использованием Set Null on delete.
 Поэтому неприятной ситуации с Delete Cascade можно избежать.
 
 \section{Реализация запросов к базе данных}
-%todo queries
+
 \begin{enumerate}
 
     \item Перечень видов изделий по категории, собираемой указанным цехом.
@@ -905,48 +908,90 @@ Infinite Loop же обошел использованием Set Null on delete.
 
     \lstinputlisting[language=SQL]{../sources/queries/task1.sql}
 
+    \includegraphics[width=11cm]{./screenshots/results/result1.png}
+
     \item Количество экземпляров изделий каждого вида каждой категории, собранных предприятием за определенный отрезок времени.
     В последней строке вывести общее число собранных изделий.
 
     \lstinputlisting[language=SQL]{../sources/queries/task2.sql}
 
+    \includegraphics[width=11cm]{./screenshots/results/result2.png}
+
     \item Данные о кадровом составе (ФИО, должность) по указанным категориям инженерно-технического персонала и рабочих;
 
     \lstinputlisting[language=SQL]{../sources/queries/task3.sql}
+
+    \includegraphics[width=11cm]{./screenshots/results/result3.png}
 
     \item Число и перечень участков предприятия и их начальников (с указанием цехов).
 
     \lstinputlisting[language=SQL]{../sources/queries/task4.sql}
 
+    \includegraphics[width=11cm]{./screenshots/results/result4.png}
+
     \item Перечень работ, которые проходит указанный вид изделия.
 
     \lstinputlisting[language=SQL]{../sources/queries/task5.sql}
+
+    \includegraphics[width=11cm]{./screenshots/results/result5.png}
 
     \item Состав бригад, работающих на указанном участке указанного цеха: ФИО рабочего, номер бригады, номер участка, номер цеха. Отсортировать по номеру бригады.
 
     \lstinputlisting[language=SQL]{../sources/queries/task6.sql}
 
+    \includegraphics[width=11cm]{./screenshots/results/result6.png}
+
     \item Перечень мастеров (ФИО) указанного участка указанного цеха и номера бригад, работы которых они координируют.
 
     \lstinputlisting[language=SQL]{../sources/queries/task7.sql}
+
+    \includegraphics[width=11cm]{./screenshots/results/result7.png}
 
     \item Информация о цехах, в которых в настоящий момент собирается больше видов изделий, чем в среднем приходится на каждый производственный цех предприятия: номер цеха, название цеха, кол-во собираемых видов изделий, среднее количество видов изделий по цехам предприятия.
 
     \lstinputlisting[language=SQL]{../sources/queries/task8.sql}
 
+    \includegraphics[width=11cm]{./screenshots/results/result8.png}
+
     \item Состав бригад, участвующих в сборке указанной категории изделия.
 
     \lstinputlisting[language=SQL]{../sources/queries/task9.sql}
+
+    \includegraphics[width=11cm]{./screenshots/results/result9.png}
 
     \item ФИО и должности работников цеха, в котором собирается больше всего категорий изделий.
 
     \lstinputlisting[language=SQL]{../sources/queries/task10.sql}
 
+    \includegraphics[width=11cm]{./screenshots/results/result10.png}
+
 \end{enumerate}
 
+\section{Приложение 1}
+
+    \includegraphics[width=11cm]{./screenshots/model/model4.png}
+
+    \includegraphics[width=11cm]{./screenshots/model/model5.png}
+
+    \includegraphics[width=11cm]{./screenshots/model/model6.png}
+
+
+\section{Приложение 2}
+
+    \includegraphics[width=11cm]{./screenshots/model/model1.png}
+
+    \includegraphics[width=11cm]{./screenshots/model/model2.png}
+
+    \includegraphics[width=11cm]{./screenshots/model/model3.png}
+
 \section{Заключение}
-В ходе работы были укреплены теоретические и закреплены практические знания о проектировании баз данных.
-Закреплена норализация, написаны запросы.
+В результате работы была спроектирована информационная система автомобилестроительного предприятия.
+Была проведена нормализация разработанной модели до 5НФ.
+Была проверена разработанная модель мредствами ERwin Data Model Validator r7, а также устранены все возможные замечания.
+Проведено прямое и обратное проектирование.
+Созданы 10 SQL-запросов и проверена их работоспособность.
+
+Были закреплены теоретические и пркатические знания.
 
 \section{Список использованных источников}
 
