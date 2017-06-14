@@ -474,7 +474,7 @@
 
     \end{tabular}
 
-    \item{Категория\_изделия}
+    \item{Тип\_изделия}
 
     \begin{tabular}{|p{7cm}|p{3cm}|p{1cm}|p{1cm}|p{3cm}|} \hline
 
@@ -486,8 +486,9 @@
     \end{tabular}
 
     В одном \underline{цеху} может собираться несколько \underline{категорий}.
+    Так, мы однозначно определим цех для конкретной категории.
     Эта сущность создана, чтобы удовлетворить это условие. Реализовано с помощью связи один-ко-многим между соответсвующими сущностями.
-    Тип\_категории может принимать занчения категорий, которые собираются на предприятии.
+    Тип\_категории может принимать значения категорий: мотоциклы, автобусы и грузовые автомобили.
 
     Категорский\_цех - атрибут, созданный для связи с \underline{Работой}. Состоит из Номер\_цеха и Тип\_категории.
 
@@ -521,6 +522,10 @@
     \end{tabular}
 
     \underline{Категория\_изделия} связана категориальной связью с \underline{Мотоциклы}, \underline{Автобусы}, \underline{Грузовые\_автомобили}.
+    \underline{Категория\_изделия} связана связью один-ко-многим с \underline{Тип\_категории}.
+    Благодаря этому мы сможем создать вид изделия, который будет в какой-то категории изделия (например, мотоцикл).
+    А также можем записать харрактеристики этого мотоцикла (благодаря категориальной связи).
+    А Тип\_категории однозначно определит цех, в котором собирается изделие (и не будет нарушена нормализация).
 
     Тип\_категории содержит категории, которые собираются на предприятии: мотоциклы, автобусы и грузовые автомобили (связана с Тип\_категории один-ко-многим).
     Код\_категории - атрибут, созданный для категориальной связи и сотоит из Тип\_категории и Нормер\_категории\_изделия.
@@ -854,7 +859,7 @@
     Возможные этапы жизненного цикла.
 
     \item Начало < Конец.
-    Окнчание не может закончиться раньше, чем начало этапа цикла.
+    Окончание не может закончиться раньше, чем начало этапа цикла.
 
 \end{itemize}
 
@@ -873,68 +878,70 @@
 
     \lstinputlisting[language=SQL]{../sources/queries/task1.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result1.png}
+    \includegraphics[width=16cm]{./screenshots/results/result1.png}
 
     \item Количество экземпляров изделий каждого вида каждой категории, собранных предприятием за определенный отрезок времени.
     В последней строке вывести общее число собранных изделий.
 
     \lstinputlisting[language=SQL]{../sources/queries/task2.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result2.png}
+    \includegraphics[width=16cm]{./screenshots/results/result2.png}
 
     \item Данные о кадровом составе (ФИО, должность) по указанным категориям инженерно-технического персонала и рабочих;
 
     \lstinputlisting[language=SQL]{../sources/queries/task3.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result3.png}
+    \includegraphics[width=16cm]{./screenshots/results/result3.png}
 
     \item Число и перечень участков предприятия и их начальников (с указанием цехов).
 
     \lstinputlisting[language=SQL]{../sources/queries/task4.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result4.png}
+    \includegraphics[width=16cm]{./screenshots/results/result4.png}
 
     \item Перечень работ, которые проходит указанный вид изделия.
 
     \lstinputlisting[language=SQL]{../sources/queries/task5.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result5.png}
+    \includegraphics[width=16cm]{./screenshots/results/result5.png}
 
     \item Состав бригад, работающих на указанном участке указанного цеха: ФИО рабочего, номер бригады, номер участка, номер цеха. Отсортировать по номеру бригады.
 
     \lstinputlisting[language=SQL]{../sources/queries/task6.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result6.png}
+    \includegraphics[width=16cm]{./screenshots/results/result6.png}
 
     \item Перечень мастеров (ФИО) указанного участка указанного цеха и номера бригад, работы которых они координируют.
 
     \lstinputlisting[language=SQL]{../sources/queries/task7.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result7.png}
+    \includegraphics[width=16cm]{./screenshots/results/result7.png}
 
     \item Информация о цехах, в которых в настоящий момент собирается больше видов изделий, чем в среднем приходится на каждый производственный цех предприятия: номер цеха, название цеха, кол-во собираемых видов изделий, среднее количество видов изделий по цехам предприятия.
 
     \lstinputlisting[language=SQL]{../sources/queries/task8.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result8.png}
+    \includegraphics[width=16cm]{./screenshots/results/result8.png}
 
     \item Состав бригад, участвующих в сборке указанной категории изделия.
 
     \lstinputlisting[language=SQL]{../sources/queries/task9.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result9.png}
+    \includegraphics[width=16cm]{./screenshots/results/result9.png}
 
     \item ФИО и должности работников цеха, в котором собирается больше всего категорий изделий.
 
     \lstinputlisting[language=SQL]{../sources/queries/task10.sql}
 
-    \includegraphics[width=14cm]{./screenshots/results/result10.png}
+    \includegraphics[width=16cm]{./screenshots/results/result10.png}
 
 \end{enumerate}
 
 \section{Создание представления}
 
-\includegraphics[width=16cm]{./screenshots/view/sql.png}
+\includegraphics[width=16cm]{./screenshots/view/select_page.png}
+
+\includegraphics[width=16cm]{./screenshots/view/where_page.png}
 
 Создал view представление запроса №4.
 Однако с небольшим изменением, так как в 4 запросе использован UNION ALL, чтобы аккуратно добавить количество участков в конец таблицы.
@@ -948,11 +955,11 @@
 
     Первая часть:
 
-    \includegraphics[width=14cm]{./screenshots/model/logical_top.png}
+    \includegraphics[width=16cm]{./screenshots/model/logical_top.png}
 
     Вторая часть:
 
-    \includegraphics[width=14cm]{./screenshots/model/logical_bottom.png}
+    \includegraphics[width=16cm]{./screenshots/model/logical_bottom.png}
 
 \section{Приложение 2}
 
@@ -960,16 +967,17 @@
 
     Первая часть:
 
-    \includegraphics[width=14cm]{./screenshots/model/physical_top.png}
+    \includegraphics[width=16cm]{./screenshots/model/physical_top.png}
 
     Вторая часть:
 
-    \includegraphics[width=14cm]{./screenshots/model/physical_bottom.png}
+    \includegraphics[width=16cm]{./screenshots/model/physical_bottom.png}
 
 \section{Приложение 3}
 
     Физическая модель после обратного проектирования.
 
+    \includegraphics[width=16cm]{./screenshots/model/reverse.jpg}
 
 
 \section{Заключение}
