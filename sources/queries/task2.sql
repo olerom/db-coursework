@@ -1,3 +1,6 @@
+DEFINE start_time = to_date('2010/07/22', 'yyyy/mm/dd');
+DEFINE end_time = to_date('2038/07/22', 'yyyy/mm/dd');
+
 SELECT
   kt       AS "Категори",
   vn       AS "Вид",
@@ -14,14 +17,15 @@ FROM (
       ON e.НОМЕР_ВИДА_ИЗДЕЛИЯ = v.НОМЕР_ВИДА_ИЗДЕЛИЯ
     INNER JOIN CWЖУРНАЛ z
       ON z.НОМЕР_ЭКЗЕМПЛЯРА = e.НОМЕР_ЭКЗЕМПЛЯРА
-  WHERE z.ЖИЗНЕННЫЙ_ЦИКЛ = 'Сборка'
-        AND z.КОНЕЦ <= to_date('2038/07/22', 'yyyy/mm/dd')
-        AND z.НАЧАЛО >= to_date('2010/07/22', 'yyyy/mm/dd')
+  WHERE z.ЭТАП_ЖИЗНЕННОГО_ЦИКЛА = 'Сборка'
+        AND z.КОНЕЦ <= &end_time
+        AND z.НАЧАЛО >= &start_time
   GROUP BY k.ТИП_КАТЕГОРИИ, v.НАЗВАНИЕ_ВИДА_ИЗДЕЛИЯ, z.НОМЕР_ЭКЗЕМПЛЯРА)
 GROUP BY kt, vn
 UNION ALL
 SELECT
-  'Всего собрано дата - дата',
+  'Всего собрано ' || to_char(&start_time, 'dd.mm.yyyy') || '-' || to_char(&end_time
+  , 'dd.mm.yyyy'),
   '',
   COUNT(*)
 FROM (
@@ -36,7 +40,7 @@ FROM (
       ON e.НОМЕР_ВИДА_ИЗДЕЛИЯ = v.НОМЕР_ВИДА_ИЗДЕЛИЯ
     INNER JOIN CWЖУРНАЛ z
       ON z.НОМЕР_ЭКЗЕМПЛЯРА = e.НОМЕР_ЭКЗЕМПЛЯРА
-  WHERE z.ЖИЗНЕННЫЙ_ЦИКЛ = 'Сборка'
-        AND z.КОНЕЦ <= to_date('2038/07/22', 'yyyy/mm/dd')
-        AND z.НАЧАЛО >= to_date('2010/07/22', 'yyyy/mm/dd')
+  WHERE z.ЭТАП_ЖИЗНЕННОГО_ЦИКЛА = 'Сборка'
+        AND z.КОНЕЦ <= &end_time
+        AND z.НАЧАЛО >= &start_time
   GROUP BY k.ТИП_КАТЕГОРИИ, v.НАЗВАНИЕ_ВИДА_ИЗДЕЛИЯ, z.НОМЕР_ЭКЗЕМПЛЯРА);

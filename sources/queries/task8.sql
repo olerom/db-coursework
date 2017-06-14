@@ -16,14 +16,14 @@ HAVING COUNT(*) > (
   SELECT AVG(count)
   FROM (
     SELECT COUNT(*) count
-    FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
+    FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ c
       INNER JOIN CWТИП_КАТЕГОРИИ t
-        ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
+        ON c.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
       INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ k
         ON k.ТИП_КАТЕГОРИИ = t.ТИП_КАТЕГОРИИ
       INNER JOIN CWВИД_ИЗДЕЛИЯ v
         ON v.НОМЕР_КАТЕГОРИИ_ИЗДЕЛИЯ = k.НОМЕР_КАТЕГОРИИ_ИЗДЕЛИЯ
-    GROUP BY C.НОМЕР_ЦЕХА))
+    GROUP BY c.НОМЕР_ЦЕХА))
 UNION ALL
 SELECT
   'Среднее количество: ' || AVG(count),
@@ -31,12 +31,12 @@ SELECT
   NULL
 FROM (
   SELECT COUNT(*) count
-  FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
+  FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ c
     INNER JOIN CWТИП_КАТЕГОРИИ t
-      ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
+      ON c.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
     INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ k
       ON k.ТИП_КАТЕГОРИИ = t.ТИП_КАТЕГОРИИ
     INNER JOIN CWВИД_ИЗДЕЛИЯ v
       ON v.НОМЕР_КАТЕГОРИИ_ИЗДЕЛИЯ = k.НОМЕР_КАТЕГОРИИ_ИЗДЕЛИЯ
-  GROUP BY C.НОМЕР_ЦЕХА)
+  GROUP BY c.НОМЕР_ЦЕХА);
 

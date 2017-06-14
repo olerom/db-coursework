@@ -1,403 +1,719 @@
 
-CREATE TABLE CWАтрибуты_ИТП
+DROP TABLE CWИнженер CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWТехнолог CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWТехник CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWСборщик CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWТокарь CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWСлесарь CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWСварщик CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWВспомогательный_цех CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWМотоциклы CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWАвтобусы CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWГрузовые_автомобили CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWРаботы CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWРабочий CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWБригада CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWЖурнал CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWЭкземпляр_изделия CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWВид_изделия CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWКатегория_изделия CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWТип_категории CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWПроизводственный_цех CASCADE CONSTRAINTS PURGE;
+
+DROP VIEW Представление CASCADE CONSTRAINTS;
+
+DROP TABLE CWУчасток CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWЦех CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWРуководитель CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWИТП CASCADE CONSTRAINTS PURGE;
+
+DROP TABLE CWСотрудник CASCADE CONSTRAINTS PURGE;
+
+CREATE TABLE CWАвтобусы
 (
-	Название_атрибута_ИТП VARCHAR2(15) NOT NULL ,
-	ИД_категории_ИТП     NUMBER(2,0) NOT NULL 
+	Вместимость          NUMBER(4,0) NOT NULL ,
+	Код_категории        VARCHAR2(12) NOT NULL 
 );
 
-CREATE UNIQUE INDEX XPKАтрибуты_ИТП ON CWАтрибуты_ИТП
-(Название_атрибута_ИТП   ASC);
+CREATE UNIQUE INDEX XPKАвтобусы ON CWАвтобусы
+(Код_категории   ASC);
 
-ALTER TABLE CWАтрибуты_ИТП
-	ADD  PRIMARY KEY (Название_атрибута_ИТП);
+ALTER TABLE CWАвтобусы
+	ADD CONSTRAINT  XPKАвтобусы PRIMARY KEY (Код_категории);
 
-CREATE INDEX XIE1Атрибуты_ИТП ON CWАтрибуты_ИТП
-(ИД_категории_ИТП   ASC);
+ALTER TABLE CWАвтобусы
+	ADD CONSTRAINT  Автобусы_соотв_65300351 CHECK  (SUBSTR(Код_категории, 1, 8) = 'Автобусы');
 
-CREATE TABLE CWАтрибуты_изделий
-(
-	Название_атрибута_изделия VARCHAR2(15) NOT NULL ,
-	Название_категории_изделия VARCHAR2(15) NOT NULL 
-);
-
-CREATE UNIQUE INDEX XPKАтрибуты_изделий ON CWАтрибуты_изделий
-(Название_атрибута_изделия   ASC);
-
-ALTER TABLE CWАтрибуты_изделий
-	ADD  PRIMARY KEY (Название_атрибута_изделия);
-
-CREATE INDEX XIE1Атрибуты_изделий ON CWАтрибуты_изделий
-(Название_категории_изделия   ASC);
-
-CREATE TABLE CWАтрибуты_рабочего
-(
-	Название_атрибута_рабочего VARCHAR2(15) NOT NULL ,
-	ИД_категории_рабочего NUMBER(2,0) NULL 
-);
-
-CREATE UNIQUE INDEX XPKАтрибуты_рабочего ON CWАтрибуты_рабочего
-(Название_атрибута_рабочего   ASC);
-
-ALTER TABLE CWАтрибуты_рабочего
-	ADD  PRIMARY KEY (Название_атрибута_рабочего);
-
-CREATE INDEX XIE1Атрибуты_рабочего ON CWАтрибуты_рабочего
-(ИД_категории_рабочего   ASC);
+ALTER TABLE CWАвтобусы
+	MODIFY Вместимость CONSTRAINT  Полож_965469913 CHECK (Вместимость >= 0);
 
 CREATE TABLE CWБригада
 (
-	ИД_бригады           NUMBER(5,0) NOT NULL ,
-	Номер_договора       NUMBER(6,0) NULL 
+	Номер_бригады        NUMBER(3,0) NOT NULL ,
+	Название_бригады     VARCHAR2(14) NOT NULL ,
+	Бригадир             VARCHAR2(15) NOT NULL ,
+	Мастер               VARCHAR2(22) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKБригада ON CWБригада
-(ИД_бригады   ASC);
+(Номер_бригады   ASC);
 
 ALTER TABLE CWБригада
-	ADD  PRIMARY KEY (ИД_бригады);
+	ADD CONSTRAINT  XPKБригада PRIMARY KEY (Номер_бригады);
 
-CREATE INDEX XIE1Бригада ON CWБригада
-(Номер_договора   ASC);
+CREATE UNIQUE INDEX XAK2Бригада ON CWБригада
+(Название_бригады   ASC);
+
+ALTER TABLE CWБригада
+ADD CONSTRAINT  XAK2Бригада UNIQUE (Название_бригады);
+
+CREATE UNIQUE INDEX XAK1Бригада ON CWБригада
+(Бригадир   ASC);
+
+ALTER TABLE CWБригада
+	ADD CONSTRAINT  Мастер_бриг_соотв_1274688691 CHECK  (SUBSTR(Мастер, 1, 6) = 'Мастер');
+
+ALTER TABLE CWБригада
+	MODIFY Номер_бригады CONSTRAINT  Номер_бригады_1200055689 CHECK (Номер_бригады >= 1);
+
+CREATE INDEX XIE3Бригада ON CWБригада
+(Мастер   ASC);
 
 CREATE TABLE CWВид_изделия
 (
-	Название_вида_изделия VARCHAR2(15) NOT NULL ,
-	Название_категории_изделия VARCHAR2(15) NOT NULL 
+	Номер_вида_изделия   VARCHAR2(4) NOT NULL ,
+	Номер_категории_изделия VARCHAR2(3) NOT NULL ,
+	Название_вида_изделия VARCHAR2(18) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKВид_изделия ON CWВид_изделия
+(Номер_вида_изделия   ASC);
+
+ALTER TABLE CWВид_изделия
+	ADD CONSTRAINT  XPKВид_изделия PRIMARY KEY (Номер_вида_изделия);
+
+CREATE UNIQUE INDEX XAK1Вид_изделия ON CWВид_изделия
 (Название_вида_изделия   ASC);
 
 ALTER TABLE CWВид_изделия
-	ADD  PRIMARY KEY (Название_вида_изделия);
+ADD CONSTRAINT  XAK1Вид_изделия UNIQUE (Название_вида_изделия);
 
 CREATE INDEX XIE1Вид_изделия ON CWВид_изделия
-(Название_категории_изделия   ASC);
+(Номер_категории_изделия   ASC);
 
-CREATE TABLE CWВспомогат_цех
+CREATE TABLE CWВспомогательный_цех
 (
-	Номер_цеха           NUMBER(3,0) NOT NULL 
+	Тип_вспомогательного_цеха VARCHAR2(13) NOT NULL ,
+	Номер_цеха           VARCHAR2(4) NOT NULL 
 );
 
-CREATE UNIQUE INDEX XPKВспомогат_цех ON CWВспомогат_цех
+CREATE UNIQUE INDEX XPKВспомогательный_цех ON CWВспомогательный_цех
 (Номер_цеха   ASC);
 
-ALTER TABLE CWВспомогат_цех
-	ADD  PRIMARY KEY (Номер_цеха);
+ALTER TABLE CWВспомогательный_цех
+	ADD CONSTRAINT  XPKВспомогательный_цех PRIMARY KEY (Номер_цеха);
+
+ALTER TABLE CWВспомогательный_цех
+	ADD CONSTRAINT  Вспомагат_соотв_1592414896 CHECK  (SUBSTR(Номер_цеха, 1, 1) = 'В'
+);
+
+ALTER TABLE CWВспомогательный_цех
+	MODIFY Тип_вспомогательного_цеха CONSTRAINT  Вспомогат_цех_1656618676 CHECK (Тип_вспомогательного_цеха IN ('ремонтный', 'тестировочный'));
+
+ALTER TABLE CWВспомогательный_цех
+	MODIFY Номер_цеха CONSTRAINT  Номер_цеха_478363869 CHECK ((SUBSTR(Номер_цеха, 1, 1) = 'П'
+OR SUBSTR(Номер_цеха, 1, 1) = 'В')
+AND LENGTH(Номер_цеха) = 4
+);
+
+CREATE TABLE CWГрузовые_автомобили
+(
+	Грузоподъемность     NUMBER(5,0) NOT NULL ,
+	Код_категории        VARCHAR2(12) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKГрузовые_автомобили ON CWГрузовые_автомобили
+(Код_категории   ASC);
+
+ALTER TABLE CWГрузовые_автомобили
+	ADD CONSTRAINT  XPKГрузовые_автомобили PRIMARY KEY (Код_категории);
+
+ALTER TABLE CWГрузовые_автомобили
+	ADD CONSTRAINT  Грузовые_соотв_1823080338 CHECK  (SUBSTR(Код_категории, 1, 8) = 'Грузовые');
+
+ALTER TABLE CWГрузовые_автомобили
+	MODIFY Грузоподъемность CONSTRAINT  Полож_1841523636 CHECK (Грузоподъемность >= 0);
 
 CREATE TABLE CWЖурнал
 (
-	Позиция_в_журнале    NUMBER(7,0) NOT NULL ,
 	Начало               DATE NOT NULL ,
-	Завершение           DATE NULL ,
-	Номер_участка        NUMBER(3, 0) NULL ,
-	Название_вида_изделия VARCHAR2(15) NOT NULL 
+	Конец                DATE NULL ,
+	Этап_жизненного_цикла VARCHAR2(18) NOT NULL ,
+	Номер_экземпляра     NUMBER(6,0) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKЖурнал ON CWЖурнал
-(Позиция_в_журнале   ASC);
+(Начало   ASC,Номер_экземпляра   ASC);
 
 ALTER TABLE CWЖурнал
-	ADD  PRIMARY KEY (Позиция_в_журнале);
+	ADD CONSTRAINT  XPKЖурнал PRIMARY KEY (Начало,Номер_экземпляра);
+
+ALTER TABLE CWЖурнал
+	ADD CONSTRAINT  Соответствие_дат_1004688284 CHECK  (Начало < Конец);
+
+ALTER TABLE CWЖурнал
+	MODIFY Этап_жизненного_цикла CONSTRAINT  Жизненный_цикл_1107733670 CHECK (Этап_жизненного_цикла IN ('Сборка', 'Передача дилеру', 'Гарантийный ремонт', 'Тестирование'));
 
 CREATE INDEX XIE1Журнал ON CWЖурнал
-(Название_вида_изделия   ASC);
+(Номер_экземпляра   ASC);
 
 CREATE TABLE CWИТП
 (
-	ИД_категории_ИТП     NUMBER(2,0) NOT NULL ,
-	Номер_договора       NUMBER(6,0) NOT NULL 
+	Код_сотрудника       VARCHAR2(15) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKИТП ON CWИТП
-(Номер_договора   ASC);
+(Код_сотрудника   ASC);
 
 ALTER TABLE CWИТП
-	ADD  PRIMARY KEY (Номер_договора);
+	ADD CONSTRAINT  XPKИТП PRIMARY KEY (Код_сотрудника);
 
-CREATE INDEX XIE1ИТП ON CWИТП
-(ИД_категории_ИТП   ASC);
+ALTER TABLE CWИТП
+	ADD CONSTRAINT  ИТП_соотв_1970182668 CHECK  (SUBSTR(Код_сотрудника, 1, 1) = 'И');
 
-CREATE TABLE CWКатегория_ИТП
+CREATE TABLE CWИнженер
 (
-	Название_категории_ИТП VARCHAR2(15) NOT NULL ,
-	ИД_категории_ИТП     NUMBER(2,0) NOT NULL 
+	Специализация_инженера VARCHAR2(16) NOT NULL ,
+	Код_сотрудника       VARCHAR2(15) NOT NULL 
 );
 
-CREATE UNIQUE INDEX XPKКатегория_ИТП ON CWКатегория_ИТП
-(ИД_категории_ИТП   ASC);
+CREATE UNIQUE INDEX XPKИнженер ON CWИнженер
+(Код_сотрудника   ASC);
 
-ALTER TABLE CWКатегория_ИТП
-	ADD  PRIMARY KEY (ИД_категории_ИТП);
+ALTER TABLE CWИнженер
+	ADD CONSTRAINT  XPKИнженер PRIMARY KEY (Код_сотрудника);
 
-CREATE UNIQUE INDEX XAK1Категория_ИТП ON CWКатегория_ИТП
-(Название_категории_ИТП   ASC);
+ALTER TABLE CWИнженер
+	ADD CONSTRAINT  Инженер_соотв_2040157128 CHECK  (SUBSTR(Код_сотрудника, 2, 7) = 'Инженер');
+
+ALTER TABLE CWИнженер
+	MODIFY Специализация_инженера CONSTRAINT  Специализация_инжен_1462496655 CHECK (Специализация_инженера IN ('проектирование', 'прототипирование'));
 
 CREATE TABLE CWКатегория_изделия
 (
-	Название_категории_изделия VARCHAR2(15) NOT NULL ,
-	Номер_цеха           NUMBER(3,0) NOT NULL 
+	Номер_категории_изделия VARCHAR2(3) NOT NULL ,
+	Код_категории        VARCHAR2(12) NOT NULL ,
+	Тип_категории        VARCHAR2(9) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKКатегория_изделия ON CWКатегория_изделия
-(Название_категории_изделия   ASC);
+(Номер_категории_изделия   ASC);
 
 ALTER TABLE CWКатегория_изделия
-	ADD  PRIMARY KEY (Название_категории_изделия);
+	ADD CONSTRAINT  XPKКатегория_изделия PRIMARY KEY (Номер_категории_изделия);
+
+CREATE UNIQUE INDEX XAK2Категория_изделия ON CWКатегория_изделия
+(Код_категории   ASC);
+
+ALTER TABLE CWКатегория_изделия
+ADD CONSTRAINT  XAK2Категория_изделия UNIQUE (Код_категории);
+
+ALTER TABLE CWКатегория_изделия
+	ADD CONSTRAINT  Кат_изд_соотв_1279441507 CHECK  (Тип_категории || Номер_категории_изделия = Код_категории);
 
 CREATE INDEX XIE1Категория_изделия ON CWКатегория_изделия
+(Тип_категории   ASC);
+
+CREATE TABLE CWМотоциклы
+(
+	Колво_тактов_мотора  NUMBER(1,0) NOT NULL ,
+	Код_категории        VARCHAR2(12) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKМотоциклы ON CWМотоциклы
+(Код_категории   ASC);
+
+ALTER TABLE CWМотоциклы
+	ADD CONSTRAINT  XPKМотоциклы PRIMARY KEY (Код_категории);
+
+ALTER TABLE CWМотоциклы
+	ADD CONSTRAINT  Мотоциклы_соотв_1987687452 CHECK  (SUBSTR(Код_категории, 1, 9) = 'Мотоциклы');
+
+ALTER TABLE CWМотоциклы
+	MODIFY Колво_тактов_мотора CONSTRAINT  Полож_1171472626 CHECK (Колво_тактов_мотора >= 0);
+
+CREATE TABLE CWПроизводственный_цех
+(
+	Номер_цеха           VARCHAR2(4) NOT NULL ,
+	Количество_сбор_конв NUMBER(2,0) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKПроизводственный_цех ON CWПроизводственный_цех
 (Номер_цеха   ASC);
 
-CREATE TABLE CWКатегория_рабочего
-(
-	Название_категории_рабочего VARCHAR2(15) NOT NULL ,
-	ИД_категории_рабочего NUMBER(2,0) NOT NULL 
+ALTER TABLE CWПроизводственный_цех
+	ADD CONSTRAINT  XPKПроизводственный_цех PRIMARY KEY (Номер_цеха);
+
+ALTER TABLE CWПроизводственный_цех
+	ADD CONSTRAINT  Производств_соотв_1637157749 CHECK  (SUBSTR(Номер_цеха, 1, 1) = 'П' 
 );
 
-CREATE UNIQUE INDEX XPKКатегория_рабочего ON CWКатегория_рабочего
-(ИД_категории_рабочего   ASC);
-
-ALTER TABLE CWКатегория_рабочего
-	ADD  PRIMARY KEY (ИД_категории_рабочего);
-
-CREATE UNIQUE INDEX XAK1Категория_рабочего ON CWКатегория_рабочего
-(Название_категории_рабочего   ASC);
-
-CREATE TABLE CWМастер
-(
-	Номер_договора       NUMBER(6,0) NOT NULL 
+ALTER TABLE CWПроизводственный_цех
+	MODIFY Номер_цеха CONSTRAINT  Номер_цеха_1884848667 CHECK ((SUBSTR(Номер_цеха, 1, 1) = 'П'
+OR SUBSTR(Номер_цеха, 1, 1) = 'В')
+AND LENGTH(Номер_цеха) = 4
 );
 
-CREATE UNIQUE INDEX XPKМастер ON CWМастер
-(Номер_договора   ASC);
-
-ALTER TABLE CWМастер
-	ADD  PRIMARY KEY (Номер_договора);
-
-CREATE TABLE CWМастер_бригада
-(
-	ИД_бригады           NUMBER(5,0) NOT NULL ,
-	Номер_договора       NUMBER(6,0) NOT NULL 
-);
-
-CREATE UNIQUE INDEX XPKМастер_бригада ON CWМастер_бригада
-(ИД_бригады   ASC,Номер_договора   ASC);
-
-ALTER TABLE CWМастер_бригада
-	ADD  PRIMARY KEY (ИД_бригады,Номер_договора);
-
-CREATE INDEX XIE1Мастер_бригада ON CWМастер_бригада
-(Номер_договора   ASC);
-
-CREATE TABLE CWМастер_начальник
-(
-	Договор_мастер       NUMBER(6,0) NOT NULL ,
-	Договор_нач_уч       NUMBER(6,0) NOT NULL 
-);
-
-CREATE UNIQUE INDEX XPKМастер_начальник ON CWМастер_начальник
-(Договор_мастер   ASC,Договор_нач_уч   ASC);
-
-ALTER TABLE CWМастер_начальник
-	ADD  PRIMARY KEY (Договор_мастер,Договор_нач_уч);
-
-CREATE INDEX XIE1Мастер_начальник ON CWМастер_начальник
-(Договор_нач_уч   ASC);
-
-CREATE TABLE CWНачальник_участка
-(
-	Номер_договора       NUMBER(6,0) NOT NULL 
-);
-
-CREATE UNIQUE INDEX XPKНачальник_участка ON CWНачальник_участка
-(Номер_договора   ASC);
-
-ALTER TABLE CWНачальник_участка
-	ADD  PRIMARY KEY (Номер_договора);
-
-CREATE TABLE CWНачальник_цеха
-(
-	Номер_договора       NUMBER(6,0) NOT NULL 
-);
-
-CREATE UNIQUE INDEX XPKНачальник_цеха ON CWНачальник_цеха
-(Номер_договора   ASC);
-
-ALTER TABLE CWНачальник_цеха
-	ADD  PRIMARY KEY (Номер_договора);
-
-CREATE TABLE CWПроизводств_цех
-(
-	Номер_цеха           NUMBER(3,0) NOT NULL 
-);
-
-CREATE UNIQUE INDEX XPKПроизводств_цех ON CWПроизводств_цех
-(Номер_цеха   ASC);
-
-ALTER TABLE CWПроизводств_цех
-	ADD  PRIMARY KEY (Номер_цеха);
+ALTER TABLE CWПроизводственный_цех
+	MODIFY Количество_сбор_конв CONSTRAINT  Колво_сбор_конв_1425966559 CHECK (Количество_сбор_конв >= 0);
 
 CREATE TABLE CWРаботы
 (
-	Номер_участка        NUMBER(3, 0) NOT NULL ,
-	Название_категории_изделия VARCHAR2(15) NOT NULL 
+	Номер_бригады        NUMBER(3,0) NOT NULL ,
+	Категорский_цех      VARCHAR2(13) NOT NULL ,
+	Код_участка          VARCHAR2(7) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKРаботы ON CWРаботы
-(Номер_участка   ASC,Название_категории_изделия   ASC);
+(Код_участка   ASC,Категорский_цех   ASC);
 
 ALTER TABLE CWРаботы
-	ADD  PRIMARY KEY (Номер_участка,Название_категории_изделия);
+	ADD CONSTRAINT  XPKРаботы PRIMARY KEY (Код_участка,Категорский_цех);
 
-CREATE INDEX XIE1Работы ON CWРаботы
-(Название_категории_изделия   ASC);
+ALTER TABLE CWРаботы
+	ADD CONSTRAINT  Работы_соотв_669910881 CHECK  (SUBSTR(Код_участка, 1, 4) = SUBSTR(Категорский_цех, 1, 4));
+
+CREATE INDEX XIE3Работы ON CWРаботы
+(Номер_бригады   ASC);
+
+CREATE INDEX XIE4Работы ON CWРаботы
+(Категорский_цех   ASC);
 
 CREATE TABLE CWРабочий
 (
-	ИД_бригады           NUMBER(5,0) NULL ,
-	ИД_категории_рабочего NUMBER(2,0) NOT NULL ,
-	Номер_договора       NUMBER(6,0) NOT NULL 
+	Номер_бригады        NUMBER(3,0) NULL ,
+	Код_сотрудника       VARCHAR2(15) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKРабочий ON CWРабочий
-(Номер_договора   ASC);
+(Код_сотрудника   ASC);
 
 ALTER TABLE CWРабочий
-	ADD  PRIMARY KEY (Номер_договора);
+	ADD CONSTRAINT  XPKРабочий PRIMARY KEY (Код_сотрудника);
+
+ALTER TABLE CWРабочий
+	ADD CONSTRAINT  Рабочий_соотв_2122034973 CHECK  (SUBSTR(Код_сотрудника, 1, 1) = 'Р');
+
+ALTER TABLE CWРабочий
+	MODIFY Номер_бригады CONSTRAINT  Номер_бригады_1401248355 CHECK (Номер_бригады >= 1);
 
 CREATE INDEX XIE1Рабочий ON CWРабочий
-(ИД_бригады   ASC);
+(Номер_бригады   ASC);
 
-CREATE INDEX XIE2Рабочий ON CWРабочий
-(ИД_категории_рабочего   ASC);
+CREATE TABLE CWРуководитель
+(
+	Код_сотрудника       VARCHAR2(15) NOT NULL ,
+	Ответственность      VARCHAR2(7) NOT NULL ,
+	Код_ответств         VARCHAR2(22) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKРуководитель ON CWРуководитель
+(Код_сотрудника   ASC);
+
+ALTER TABLE CWРуководитель
+	ADD CONSTRAINT  XPKРуководитель PRIMARY KEY (Код_сотрудника);
+
+CREATE UNIQUE INDEX XAK1Руководитель ON CWРуководитель
+(Код_ответств   ASC);
+
+ALTER TABLE CWРуководитель
+ADD CONSTRAINT  XAK1Руководитель UNIQUE (Код_ответств);
+
+ALTER TABLE CWРуководитель
+	ADD CONSTRAINT  Код_ответсв_1918082216 CHECK  (Ответственность || Код_сотрудника = Код_ответств);
+
+ALTER TABLE CWРуководитель
+	MODIFY Ответственность CONSTRAINT  Руковолитель_отвественность CHECK (Ответственность IN ('Участок', 'Цех', 'Мастер'));
+
+CREATE TABLE CWСборщик
+(
+	Специализация_сборщика VARCHAR2(9) NOT NULL ,
+	Код_сотрудника       VARCHAR2(15) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKСбощик ON CWСборщик
+(Код_сотрудника   ASC);
+
+ALTER TABLE CWСборщик
+	ADD CONSTRAINT  XPKСбощик PRIMARY KEY (Код_сотрудника);
+
+ALTER TABLE CWСборщик
+	ADD CONSTRAINT  Сборщик_соотв_2053938968 CHECK  (SUBSTR(Код_сотрудника, 2, 7) = 'Сборщик');
+
+ALTER TABLE CWСборщик
+	MODIFY Специализация_сборщика CONSTRAINT  Сбрщик_спец_1691720949 CHECK (Специализация_сборщика IN ('двигатель', 'подвеска', 'кузов'));
+
+CREATE TABLE CWСварщик
+(
+	Специализвация_сварщика VARCHAR2(8) NOT NULL ,
+	Код_сотрудника       VARCHAR2(15) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKСварщик ON CWСварщик
+(Код_сотрудника   ASC);
+
+ALTER TABLE CWСварщик
+	ADD CONSTRAINT  XPKСварщик PRIMARY KEY (Код_сотрудника);
+
+ALTER TABLE CWСварщик
+	MODIFY Специализвация_сварщика CONSTRAINT  Сварщик_спец_1889797129 CHECK (Специализвация_сварщика IN ('подвеска', 'рама'));
+
+CREATE TABLE CWСлесарь
+(
+	Разряд_слесаря       NUMBER(1,0) NOT NULL ,
+	Код_сотрудника       VARCHAR2(15) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKСлесарь ON CWСлесарь
+(Код_сотрудника   ASC);
+
+ALTER TABLE CWСлесарь
+	ADD CONSTRAINT  XPKСлесарь PRIMARY KEY (Код_сотрудника);
+
+ALTER TABLE CWСлесарь
+	ADD CONSTRAINT  Слесарь_соотв_2125359824 CHECK  (SUBSTR(Код_сотрудника, 2, 7) = 'Слесарь');
+
+ALTER TABLE CWСлесарь
+	MODIFY Разряд_слесаря CONSTRAINT  Слесарь_разряд_1046431093 CHECK (Разряд_слесаря BETWEEN 1 AND 6);
 
 CREATE TABLE CWСотрудник
 (
-	Номер_договора       NUMBER(6,0) NOT NULL ,
-	Имя_сотрудника       VARCHAR2(12) NOT NULL ,
-	Фамилия_сотрудника   VARCHAR2(12) NOT NULL ,
-	Отчество_сотрудника  VARCHAR2(12) NULL 
+	Номер_договора       VARCHAR2(6) NOT NULL ,
+	Имя_сотрудника       VARCHAR2(14) NOT NULL ,
+	Фамилия_сотрудника   VARCHAR2(16) NOT NULL ,
+	Отчество_сотрудника  VARCHAR2(16) NULL ,
+	Тип_сотрудника       VARCHAR2(1) NOT NULL ,
+	Дата_рождения        DATE NULL ,
+	Код_сотрудника       VARCHAR2(15) NOT NULL ,
+	Должность_сотрудника VARCHAR2(8) NULL 
 );
 
 CREATE UNIQUE INDEX XPKСотрудник ON CWСотрудник
 (Номер_договора   ASC);
 
 ALTER TABLE CWСотрудник
-	ADD  PRIMARY KEY (Номер_договора);
+	ADD CONSTRAINT  XPKСотрудник PRIMARY KEY (Номер_договора);
+
+CREATE UNIQUE INDEX XAK1Сотрудник ON CWСотрудник
+(Код_сотрудника   ASC);
+
+ALTER TABLE CWСотрудник
+ADD CONSTRAINT  XAK1Сотрудник UNIQUE (Код_сотрудника);
+
+ALTER TABLE CWСотрудник
+	ADD CONSTRAINT  Код_сотрудника_152408122 CHECK  (Тип_сотрудника || Должность_сотрудника || Номер_договора = Код_сотрудника);
+
+ALTER TABLE CWСотрудник
+	MODIFY Тип_сотрудника CONSTRAINT  Тип_сотрудник_1488454748 CHECK (Тип_сотрудника IN ('Р', 'И'));
+
+ALTER TABLE CWСотрудник
+	MODIFY Должность_сотрудника CONSTRAINT  Должность_сотрудника_195850548 CHECK (Должность_сотрудника IN ('Сборщик', 'Токарь', 'Слесарь', 'Сварщик', 'Технолог', 'Техник', 'Инженер'));
+
+ALTER TABLE CWСотрудник
+	MODIFY Отчество_сотрудника DEFAULT 'Нет отчества';
+
+CREATE TABLE CWТехник
+(
+	Специализация_техника VARCHAR2(7) NOT NULL ,
+	Код_сотрудника       VARCHAR2(15) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKТехник ON CWТехник
+(Код_сотрудника   ASC);
+
+ALTER TABLE CWТехник
+	ADD CONSTRAINT  XPKТехник PRIMARY KEY (Код_сотрудника);
+
+ALTER TABLE CWТехник
+	ADD CONSTRAINT  Техник_соотв_469433198 CHECK  (SUBSTR(Код_сотрудника, 2, 6) = 'Техник');
+
+ALTER TABLE CWТехник
+	MODIFY Специализация_техника CONSTRAINT  Специализация_техни_1611615165 CHECK (Специализация_техника IN ('схемы', 'чертежи'));
+
+CREATE TABLE CWТехнолог
+(
+	Специализация_технолога VARCHAR2(12) NOT NULL ,
+	Код_сотрудника       VARCHAR2(15) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKТехнолог ON CWТехнолог
+(Код_сотрудника   ASC);
+
+ALTER TABLE CWТехнолог
+	ADD CONSTRAINT  XPKТехнолог PRIMARY KEY (Код_сотрудника);
+
+ALTER TABLE CWТехнолог
+	ADD CONSTRAINT  Технолог_соотв_68561289 CHECK  (SUBSTR(Код_сотрудника, 2, 8) = 'Технолог');
+
+ALTER TABLE CWТехнолог
+	MODIFY Специализация_технолога CONSTRAINT  Технолог_спец_210397916 CHECK (Специализация_технолога IN ('исследования', 'практика'));
+
+CREATE TABLE CWТип_категории
+(
+	Тип_категории        VARCHAR2(9) NOT NULL ,
+	Номер_цеха           VARCHAR2(4) NOT NULL ,
+	Категорский_цех      VARCHAR2(13) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKТиа_категории ON CWТип_категории
+(Тип_категории   ASC);
+
+ALTER TABLE CWТип_категории
+	ADD CONSTRAINT  XPKТиа_категории PRIMARY KEY (Тип_категории);
+
+CREATE UNIQUE INDEX XAK1Тиа_категории ON CWТип_категории
+(Категорский_цех   ASC);
+
+ALTER TABLE CWТип_категории
+ADD CONSTRAINT  XAK1Тиа_категории UNIQUE (Категорский_цех);
+
+ALTER TABLE CWТип_категории
+	ADD CONSTRAINT  Кат_цех_361046675 CHECK  (Номер_цеха || Тип_категории = Категорский_цех);
+
+ALTER TABLE CWТип_категории
+	MODIFY Тип_категории CONSTRAINT  Тип_категории_311194201 CHECK (Тип_категории IN ('Мотоциклы', 'Автобусы', 'Грузовые'));
+
+CREATE INDEX XIE1Тиа_категории ON CWТип_категории
+(Номер_цеха   ASC);
+
+CREATE TABLE CWТокарь
+(
+	Разряд_токаря        NUMBER(1,0) NOT NULL ,
+	Код_сотрудника       VARCHAR2(15) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKТокарь ON CWТокарь
+(Код_сотрудника   ASC);
+
+ALTER TABLE CWТокарь
+	ADD CONSTRAINT  XPKТокарь PRIMARY KEY (Код_сотрудника);
+
+ALTER TABLE CWТокарь
+	ADD CONSTRAINT  Токарь_соотв_518848096 CHECK  (SUBSTR(Код_сотрудника, 2, 6) = 'Токарь');
+
+ALTER TABLE CWТокарь
+	MODIFY Разряд_токаря CONSTRAINT  Токарь_разряд_1073954959 CHECK (Разряд_токаря BETWEEN 1 AND 7);
 
 CREATE TABLE CWУчасток
 (
+	Номер_цеха           VARCHAR2(4) NOT NULL ,
 	Номер_участка        NUMBER(3,0) NOT NULL ,
-	Тип_участка          VARCHAR2(9) NOT NULL  CHECK (Тип_участка IN ('Изготовка', 'Сборка')),
-	Номер_цеха           NUMBER(3,0) NOT NULL ,
-	Номер_договора       NUMBER(6,0) NOT NULL 
+	Начальник_участка    VARCHAR2(22) NOT NULL ,
+	Тип_участка          VARCHAR2(9) NOT NULL ,
+	Название_участка     VARCHAR2(13) NOT NULL ,
+	Код_участка          VARCHAR2(7) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKУчасток ON CWУчасток
-(Номер_участка   ASC,Номер_цеха   ASC);
+(Номер_цеха   ASC,Номер_участка   ASC);
 
 ALTER TABLE CWУчасток
-	ADD  PRIMARY KEY (Номер_участка,Номер_цеха);
+	ADD CONSTRAINT  XPKУчасток PRIMARY KEY (Номер_цеха,Номер_участка);
 
-CREATE INDEX XIE2Участок ON CWУчасток
-(Номер_цеха   ASC);
+CREATE UNIQUE INDEX XAK1Участок ON CWУчасток
+(Начальник_участка   ASC);
 
-CREATE INDEX XIE3Участок ON CWУчасток
-(Номер_договора   ASC);
+ALTER TABLE CWУчасток
+ADD CONSTRAINT  XAK1Участок UNIQUE (Начальник_участка);
+
+CREATE UNIQUE INDEX XAK2Участок ON CWУчасток
+(Название_участка   ASC);
+
+ALTER TABLE CWУчасток
+ADD CONSTRAINT  XAK2Участок UNIQUE (Название_участка);
+
+CREATE UNIQUE INDEX XAK3Участок ON CWУчасток
+(Код_участка   ASC);
+
+ALTER TABLE CWУчасток
+ADD CONSTRAINT  XAK3Участок UNIQUE (Код_участка);
+
+ALTER TABLE CWУчасток
+	ADD CONSTRAINT  Участок_нач_соотв_2107159506 CHECK  (SUBSTR(Начальник_участка, 1, 7) = 'Участок');
+
+ALTER TABLE CWУчасток
+	ADD CONSTRAINT  Уч_цех_1191576499 CHECK  (Номер_цеха || Номер_участка = Код_участка);
+
+ALTER TABLE CWУчасток
+	MODIFY Тип_участка CONSTRAINT  Тип_участка_367341758 CHECK (Тип_участка IN ('сборка', 'изготовка'));
 
 CREATE TABLE CWЦех
 (
-	Номер_цеха           NUMBER(3,0) NOT NULL ,
-	Номер_договора       NUMBER(6,0) NOT NULL 
+	Номер_цеха           VARCHAR2(4) NOT NULL ,
+	Начальник_цеха       VARCHAR2(22) NOT NULL ,
+	Название_цеха        VARCHAR2(14) NOT NULL 
 );
 
 CREATE UNIQUE INDEX XPKЦех ON CWЦех
 (Номер_цеха   ASC);
 
 ALTER TABLE CWЦех
-	ADD  PRIMARY KEY (Номер_цеха);
+	ADD CONSTRAINT  XPKЦех PRIMARY KEY (Номер_цеха);
 
-CREATE INDEX XIE1Цех ON CWЦех
-(Номер_договора   ASC);
-
-CREATE VIEW Представление ( Имя_сотрудника,Фамилия_сотрудника,Отчество_сотрудника,Всего ) 
-	 AS  SELECT CWСотрудник.Имя_сотрудника,CWСотрудник.Фамилия_сотрудника,CWСотрудник.Отчество_сотрудника,COUNT(CWУчасток2.Номер_участка)
-		FROM CWЦех ,CWУчасток CWУчасток2,CWУчасток CWУчасток1,CWСотрудник 
-		WHERE CWЦех.Номер_цеха = CWУчасток1.Номер_цеха AND
-CWУчасток1.Номер_договора = CWСотрудник.Номер_договора
-		GROUP BY CWУчасток1.Номер_участка, CWУчасток1.Номер_цеха, CWСотрудник.Фамилия_сотрудника, CWСотрудник.Имя_сотрудника, CWСотрудник.Отчество_сотрудника;
-
-ALTER TABLE CWАтрибуты_ИТП
-	ADD (FOREIGN KEY (ИД_категории_ИТП) REFERENCES CWКатегория_ИТП (ИД_категории_ИТП));
-
-ALTER TABLE CWАтрибуты_изделий
-	ADD (FOREIGN KEY (Название_категории_изделия) REFERENCES CWКатегория_изделия (Название_категории_изделия));
-
-ALTER TABLE CWАтрибуты_рабочего
-	ADD (FOREIGN KEY (ИД_категории_рабочего) REFERENCES CWКатегория_рабочего (ИД_категории_рабочего) ON DELETE SET NULL);
-
-ALTER TABLE CWБригада
-	ADD (FOREIGN KEY (Номер_договора) REFERENCES CWРабочий (Номер_договора) ON DELETE SET NULL);
-
-ALTER TABLE CWВид_изделия
-	ADD (FOREIGN KEY (Название_категории_изделия) REFERENCES CWКатегория_изделия (Название_категории_изделия));
-
-ALTER TABLE CWВспомогат_цех
-	ADD (FOREIGN KEY (Номер_цеха) REFERENCES CWЦех (Номер_цеха) ON DELETE CASCADE);
-
-ALTER TABLE CWЖурнал
-	ADD (FOREIGN KEY (Название_вида_изделия) REFERENCES CWВид_изделия (Название_вида_изделия));
-
-ALTER TABLE CWИТП
-	ADD (FOREIGN KEY (ИД_категории_ИТП) REFERENCES CWКатегория_ИТП (ИД_категории_ИТП));
-
-ALTER TABLE CWИТП
-	ADD (FOREIGN KEY (Номер_договора) REFERENCES CWСотрудник (Номер_договора));
-
-ALTER TABLE CWКатегория_изделия
-	ADD (FOREIGN KEY (Номер_цеха) REFERENCES CWПроизводств_цех (Номер_цеха));
-
-ALTER TABLE CWМастер
-	ADD (FOREIGN KEY (Номер_договора) REFERENCES CWИТП (Номер_договора));
-
-ALTER TABLE CWМастер_бригада
-	ADD (FOREIGN KEY (ИД_бригады) REFERENCES CWБригада (ИД_бригады));
-
-ALTER TABLE CWМастер_бригада
-	ADD (FOREIGN KEY (Номер_договора) REFERENCES CWМастер (Номер_договора));
-
-ALTER TABLE CWМастер_начальник
-	ADD (FOREIGN KEY (Договор_мастер) REFERENCES CWМастер (Номер_договора));
-
-ALTER TABLE CWМастер_начальник
-	ADD (FOREIGN KEY (Договор_нач_уч) REFERENCES CWНачальник_участка (Номер_договора));
-
-ALTER TABLE CWНачальник_участка
-	ADD (FOREIGN KEY (Номер_договора) REFERENCES CWИТП (Номер_договора));
-
-ALTER TABLE CWНачальник_цеха
-	ADD (FOREIGN KEY (Номер_договора) REFERENCES CWИТП (Номер_договора));
-
-ALTER TABLE CWПроизводств_цех
-	ADD (FOREIGN KEY (Номер_цеха) REFERENCES CWЦех (Номер_цеха) ON DELETE SET NULL);
-
-ALTER TABLE CWРаботы
-	ADD (FOREIGN KEY (Название_категории_изделия) REFERENCES CWКатегория_изделия (Название_категории_изделия) ON DELETE SET NULL);
-
-ALTER TABLE CWРабочий
-	ADD (FOREIGN KEY (ИД_категории_рабочего) REFERENCES CWКатегория_рабочего (ИД_категории_рабочего));
-
-ALTER TABLE CWРабочий
-	ADD (FOREIGN KEY (ИД_бригады) REFERENCES CWБригада (ИД_бригады));
-
-ALTER TABLE CWРабочий
-	ADD (FOREIGN KEY (Номер_договора) REFERENCES CWСотрудник (Номер_договора));
-
-ALTER TABLE CWУчасток
-	ADD (FOREIGN KEY (Номер_цеха) REFERENCES CWЦех (Номер_цеха));
-
-ALTER TABLE CWУчасток
-	ADD (FOREIGN KEY (Номер_договора) REFERENCES CWНачальник_участка (Номер_договора));
+CREATE UNIQUE INDEX XAK2Цех ON CWЦех
+(Начальник_цеха   ASC);
 
 ALTER TABLE CWЦех
-	ADD (FOREIGN KEY (Номер_договора) REFERENCES CWНачальник_цеха (Номер_договора));
+ADD CONSTRAINT  XAK2Цех UNIQUE (Начальник_цеха);
+
+CREATE UNIQUE INDEX XAK3Цех ON CWЦех
+(Название_цеха   ASC);
+
+ALTER TABLE CWЦех
+ADD CONSTRAINT  XAK3Цех UNIQUE (Название_цеха);
+
+ALTER TABLE CWЦех
+	ADD CONSTRAINT  Цех_нач_соотв_1933448208 CHECK  (SUBSTR(Начальник_цеха, 1, 3) = 'Цех');
+
+ALTER TABLE CWЦех
+	ADD CONSTRAINT  Номер_цеха_905638907 CHECK  ((SUBSTR(Номер_цеха, 1, 1) = 'П'
+OR SUBSTR(Номер_цеха, 1, 1) = 'В')
+AND LENGTH(Номер_цеха) = 4
+);
+
+CREATE TABLE CWЭкземпляр_изделия
+(
+	Номер_экземпляра     NUMBER(6,0) NOT NULL ,
+	Номер_вида_изделия   VARCHAR2(4) NOT NULL 
+);
+
+CREATE UNIQUE INDEX XPKЭкземпляр_изделия ON CWЭкземпляр_изделия
+(Номер_экземпляра   ASC);
+
+ALTER TABLE CWЭкземпляр_изделия
+	ADD CONSTRAINT  XPKЭкземпляр_изделия PRIMARY KEY (Номер_экземпляра);
+
+CREATE INDEX XIE1Экземпляр_изделия ON CWЭкземпляр_изделия
+(Номер_вида_изделия   ASC);
+
+CREATE VIEW Представление ( Количество_участков,Номер_участка,Номер_цеха,Название_участка,Тип_участка,Фамилия_начальника,Имя_начальника,Отчество_начальника ) 
+	 AS  SELECT COUNT(u2.Название_участка),u1.Номер_участка,u1.Номер_цеха,u1.Название_участка,u1.Тип_участка,s.Фамилия_сотрудника,s.Имя_сотрудника,s.Отчество_сотрудника
+		FROM CWУчасток u1,CWУчасток u2,CWРуководитель r,CWСотрудник s
+		WHERE u1.Начальник_участка = r.Код_ответств AND s.Код_сотрудника = r.Код_сотрудника
+		GROUP BY u1.Название_участка,
+u1.Номер_участка,
+u1.Номер_цеха,
+u1.Тип_участка,
+s.Фамилия_сотрудника,
+s.Имя_сотрудника,
+s.Отчество_сотрудника
+;
+
+ALTER TABLE CWАвтобусы
+	ADD (CONSTRAINT O5 FOREIGN KEY (Код_категории) REFERENCES CWКатегория_изделия (Код_категории) ON DELETE CASCADE);
+
+ALTER TABLE CWБригада
+	ADD (CONSTRAINT R_13 FOREIGN KEY (Бригадир) REFERENCES CWРабочий (Код_сотрудника));
+
+ALTER TABLE CWБригада
+	ADD (CONSTRAINT R_56 FOREIGN KEY (Мастер) REFERENCES CWРуководитель (Код_ответств));
+
+ALTER TABLE CWВид_изделия
+	ADD (CONSTRAINT R_30 FOREIGN KEY (Номер_категории_изделия) REFERENCES CWКатегория_изделия (Номер_категории_изделия));
+
+ALTER TABLE CWВспомогательный_цех
+	ADD (CONSTRAINT O2 FOREIGN KEY (Номер_цеха) REFERENCES CWЦех (Номер_цеха) ON DELETE CASCADE);
+
+ALTER TABLE CWГрузовые_автомобили
+	ADD (CONSTRAINT O3 FOREIGN KEY (Код_категории) REFERENCES CWКатегория_изделия (Код_категории) ON DELETE CASCADE);
+
+ALTER TABLE CWЖурнал
+	ADD (CONSTRAINT R_64 FOREIGN KEY (Номер_экземпляра) REFERENCES CWЭкземпляр_изделия (Номер_экземпляра));
+
+ALTER TABLE CWИТП
+	ADD (CONSTRAINT O9 FOREIGN KEY (Код_сотрудника) REFERENCES CWСотрудник (Код_сотрудника));
+
+ALTER TABLE CWИнженер
+	ADD (CONSTRAINT O10 FOREIGN KEY (Код_сотрудника) REFERENCES CWИТП (Код_сотрудника) ON DELETE CASCADE);
+
+ALTER TABLE CWКатегория_изделия
+	ADD (CONSTRAINT R_77 FOREIGN KEY (Тип_категории) REFERENCES CWТип_категории (Тип_категории));
+
+ALTER TABLE CWМотоциклы
+	ADD (CONSTRAINT O6 FOREIGN KEY (Код_категории) REFERENCES CWКатегория_изделия (Код_категории) ON DELETE CASCADE);
+
+ALTER TABLE CWПроизводственный_цех
+	ADD (CONSTRAINT O1 FOREIGN KEY (Номер_цеха) REFERENCES CWЦех (Номер_цеха));
+
+ALTER TABLE CWРаботы
+	ADD (CONSTRAINT R_68 FOREIGN KEY (Номер_бригады) REFERENCES CWБригада (Номер_бригады));
+
+ALTER TABLE CWРаботы
+	ADD (CONSTRAINT R_75 FOREIGN KEY (Категорский_цех) REFERENCES CWТип_категории (Категорский_цех));
+
+ALTER TABLE CWРаботы
+	ADD (CONSTRAINT R_48 FOREIGN KEY (Код_участка) REFERENCES CWУчасток (Код_участка));
+
+ALTER TABLE CWРабочий
+	ADD (CONSTRAINT R_15 FOREIGN KEY (Номер_бригады) REFERENCES CWБригада (Номер_бригады));
+
+ALTER TABLE CWРабочий
+	ADD (CONSTRAINT O8 FOREIGN KEY (Код_сотрудника) REFERENCES CWСотрудник (Код_сотрудника));
+
+ALTER TABLE CWРуководитель
+	ADD (CONSTRAINT R_55 FOREIGN KEY (Код_сотрудника) REFERENCES CWИТП (Код_сотрудника));
+
+ALTER TABLE CWСборщик
+	ADD (CONSTRAINT O13 FOREIGN KEY (Код_сотрудника) REFERENCES CWРабочий (Код_сотрудника) ON DELETE CASCADE);
+
+ALTER TABLE CWСварщик
+	ADD (CONSTRAINT O7 FOREIGN KEY (Код_сотрудника) REFERENCES CWРабочий (Код_сотрудника) ON DELETE CASCADE);
+
+ALTER TABLE CWСлесарь
+	ADD (CONSTRAINT O15 FOREIGN KEY (Код_сотрудника) REFERENCES CWРабочий (Код_сотрудника) ON DELETE CASCADE);
+
+ALTER TABLE CWТехник
+	ADD (CONSTRAINT O11 FOREIGN KEY (Код_сотрудника) REFERENCES CWИТП (Код_сотрудника) ON DELETE CASCADE);
+
+ALTER TABLE CWТехнолог
+	ADD (CONSTRAINT O12 FOREIGN KEY (Код_сотрудника) REFERENCES CWИТП (Код_сотрудника) ON DELETE CASCADE);
+
+ALTER TABLE CWТип_категории
+	ADD (CONSTRAINT R_74 FOREIGN KEY (Номер_цеха) REFERENCES CWПроизводственный_цех (Номер_цеха));
+
+ALTER TABLE CWТокарь
+	ADD (CONSTRAINT O14 FOREIGN KEY (Код_сотрудника) REFERENCES CWРабочий (Код_сотрудника) ON DELETE CASCADE);
+
+ALTER TABLE CWУчасток
+	ADD (CONSTRAINT R_27 FOREIGN KEY (Номер_цеха) REFERENCES CWЦех (Номер_цеха));
+
+ALTER TABLE CWУчасток
+	ADD (CONSTRAINT R_57 FOREIGN KEY (Начальник_участка) REFERENCES CWРуководитель (Код_ответств));
+
+ALTER TABLE CWЦех
+	ADD (CONSTRAINT R_58 FOREIGN KEY (Начальник_цеха) REFERENCES CWРуководитель (Код_ответств));
+
+ALTER TABLE CWЭкземпляр_изделия
+	ADD (CONSTRAINT R_62 FOREIGN KEY (Номер_вида_изделия) REFERENCES CWВид_изделия (Номер_вида_изделия));
