@@ -13,6 +13,6 @@ WHERE r.НОМЕР_БРИГАДЫ = ANY (
   SELECT
     DISTINCT t.НОМЕР_БРИГАДЫ
   FROM CWРАБОТЫ t
-    INNER JOIN CWТИП_КАТЕГОРИИ k
+    INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ k
       ON t.КАТЕГОРСКИЙ_ЦЕХ = k.КАТЕГОРСКИЙ_ЦЕХ
   WHERE k.ТИП_КАТЕГОРИИ = '&cat');

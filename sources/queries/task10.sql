@@ -12,7 +12,7 @@ FROM CWЦЕХ c
 WHERE c.НОМЕР_ЦЕХА = ANY (
   SELECT C.НОМЕР_ЦЕХА
   FROM CWЦЕХ C
-    INNER JOIN CWТИП_КАТЕГОРИИ t
+    INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
       ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
   GROUP BY C.НОМЕР_ЦЕХА
   HAVING COUNT(*) = (
@@ -22,7 +22,7 @@ WHERE c.НОМЕР_ЦЕХА = ANY (
         C.НОМЕР_ЦЕХА,
         COUNT(*) count
       FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
-        INNER JOIN CWТИП_КАТЕГОРИИ t
+        INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
           ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
       GROUP BY C.НОМЕР_ЦЕХА)))
 UNION ALL
@@ -40,7 +40,7 @@ FROM CWУЧАСТОК u
 WHERE u.НОМЕР_ЦЕХА = ANY (
   SELECT C.НОМЕР_ЦЕХА
   FROM CWЦЕХ C
-    INNER JOIN CWТИП_КАТЕГОРИИ t
+    INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
       ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
   GROUP BY C.НОМЕР_ЦЕХА
   HAVING COUNT(*) = (
@@ -50,7 +50,7 @@ WHERE u.НОМЕР_ЦЕХА = ANY (
         C.НОМЕР_ЦЕХА,
         COUNT(*) count
       FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
-        INNER JOIN CWТИП_КАТЕГОРИИ t
+        INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
           ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
       GROUP BY C.НОМЕР_ЦЕХА)))
 UNION ALL
@@ -80,7 +80,7 @@ FROM (
   WHERE u.НОМЕР_ЦЕХА = ANY (
     SELECT C.НОМЕР_ЦЕХА
     FROM CWЦЕХ C
-      INNER JOIN CWТИП_КАТЕГОРИИ t
+      INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
         ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
     GROUP BY C.НОМЕР_ЦЕХА
     HAVING COUNT(*) = (
@@ -90,7 +90,7 @@ FROM (
           C.НОМЕР_ЦЕХА,
           COUNT(*) count
         FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
-          INNER JOIN CWТИП_КАТЕГОРИИ t
+          INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
             ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
         GROUP BY C.НОМЕР_ЦЕХА))))
 UNION ALL
@@ -118,7 +118,7 @@ FROM (
   WHERE u.НОМЕР_ЦЕХА = ANY (
     SELECT C.НОМЕР_ЦЕХА
     FROM CWЦЕХ C
-      INNER JOIN CWТИП_КАТЕГОРИИ t
+      INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
         ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
     GROUP BY C.НОМЕР_ЦЕХА
     HAVING COUNT(*) = (
@@ -128,7 +128,7 @@ FROM (
           C.НОМЕР_ЦЕХА,
           COUNT(*) count
         FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
-          INNER JOIN CWТИП_КАТЕГОРИИ t
+          INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
             ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
         GROUP BY C.НОМЕР_ЦЕХА))))
 UNION ALL
@@ -159,7 +159,7 @@ FROM (
   WHERE u.НОМЕР_ЦЕХА = ANY (
     SELECT C.НОМЕР_ЦЕХА
     FROM CWЦЕХ C
-      INNER JOIN CWТИП_КАТЕГОРИИ t
+      INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
         ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
     GROUP BY C.НОМЕР_ЦЕХА
     HAVING COUNT(*) = (
@@ -169,6 +169,6 @@ FROM (
           C.НОМЕР_ЦЕХА,
           COUNT(*) count
         FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
-          INNER JOIN CWТИП_КАТЕГОРИИ t
+          INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
             ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
         GROUP BY C.НОМЕР_ЦЕХА))));

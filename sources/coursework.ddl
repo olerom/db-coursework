@@ -1,719 +1,774 @@
+DROP TABLE CWРРЅР¶РµРЅРµСЂ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWИнженер CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРўРµС…РЅРѕР»РѕРі CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWТехнолог CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРўРµС…РЅРёРє CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWТехник CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРЎР±РѕСЂС‰РёРє CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWСборщик CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРўРѕРєР°СЂСЊ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWТокарь CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРЎР»РµСЃР°СЂСЊ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWСлесарь CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРЎРІР°СЂС‰РёРє CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWСварщик CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС… CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWВспомогательный_цех CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРњРѕС‚РѕС†РёРєР»С‹ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWМотоциклы CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРђРІС‚РѕР±СѓСЃС‹ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWАвтобусы CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР“СЂСѓР·РѕРІС‹Рµ_Р°РІС‚РѕРјРѕР±РёР»Рё CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWГрузовые_автомобили CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР Р°Р±РѕС‚С‹ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWРаботы CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР Р°Р±РѕС‡РёР№ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWРабочий CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР‘СЂРёРіР°РґР° CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWБригада CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР–СѓСЂРЅР°Р» CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWЖурнал CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWЭкземпляр_изделия CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР’РёРґ_РёР·РґРµР»РёСЏ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWВид_изделия CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWКатегория_изделия CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС… CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWТип_категории CASCADE CONSTRAINTS PURGE;
+DROP VIEW РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ CASCADE CONSTRAINTS;
 
-DROP TABLE CWПроизводственный_цех CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРР·РіРѕС‚РѕРІРёС‚РµР»СЊРЅС‹Р№_СѓС‡Р°СЃС‚РѕРє CASCADE CONSTRAINTS PURGE;
 
-DROP VIEW Представление CASCADE CONSTRAINTS;
+DROP TABLE CWРЈС‡Р°СЃС‚РѕРє CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWУчасток CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР¦РµС… CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWЦех CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWРуководитель CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРРўРџ CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWИТП CASCADE CONSTRAINTS PURGE;
+DROP TABLE CWРЎРѕС‚СЂСѓРґРЅРёРє CASCADE CONSTRAINTS PURGE;
 
-DROP TABLE CWСотрудник CASCADE CONSTRAINTS PURGE;
-
-CREATE TABLE CWАвтобусы
+CREATE TABLE CWРђРІС‚РѕР±СѓСЃС‹
 (
-	Вместимость          NUMBER(4,0) NOT NULL ,
-	Код_категории        VARCHAR2(12) NOT NULL 
+  Р’РјРµСЃС‚РёРјРѕСЃС‚СЊ NUMBER(4, 0) NOT NULL,
+  РљРѕРґ_РІРёРґР°    VARCHAR2(12) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKАвтобусы ON CWАвтобусы
-(Код_категории   ASC);
+CREATE UNIQUE INDEX XPKРђРІС‚РѕР±СѓСЃС‹
+  ON CWРђРІС‚РѕР±СѓСЃС‹
+  (РљРѕРґ_РІРёРґР° ASC);
 
-ALTER TABLE CWАвтобусы
-	ADD CONSTRAINT  XPKАвтобусы PRIMARY KEY (Код_категории);
+ALTER TABLE CWРђРІС‚РѕР±СѓСЃС‹
+  ADD CONSTRAINT XPKРђРІС‚РѕР±СѓСЃС‹ PRIMARY KEY (РљРѕРґ_РІРёРґР°);
 
-ALTER TABLE CWАвтобусы
-	ADD CONSTRAINT  Автобусы_соотв_65300351 CHECK  (SUBSTR(Код_категории, 1, 8) = 'Автобусы');
+ALTER TABLE CWРђРІС‚РѕР±СѓСЃС‹
+  ADD CONSTRAINT РђРІС‚РѕР±СѓСЃС‹_СЃРѕРѕС‚РІ_65300351 CHECK (SUBSTR(РљРѕРґ_РІРёРґР°, 1, 8) = 'РђРІС‚РѕР±СѓСЃС‹');
 
-ALTER TABLE CWАвтобусы
-	MODIFY Вместимость CONSTRAINT  Полож_965469913 CHECK (Вместимость >= 0);
+ALTER TABLE CWРђРІС‚РѕР±СѓСЃС‹
+  MODIFY Р’РјРµСЃС‚РёРјРѕСЃС‚СЊ CONSTRAINT РџРѕР»РѕР¶_965469913 CHECK (Р’РјРµСЃС‚РёРјРѕСЃС‚СЊ >= 0);
 
-CREATE TABLE CWБригада
+CREATE TABLE CWР‘СЂРёРіР°РґР°
 (
-	Номер_бригады        NUMBER(3,0) NOT NULL ,
-	Название_бригады     VARCHAR2(14) NOT NULL ,
-	Бригадир             VARCHAR2(15) NOT NULL ,
-	Мастер               VARCHAR2(22) NOT NULL 
+  РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹    NUMBER(3, 0) NOT NULL,
+  РќР°Р·РІР°РЅРёРµ_Р±СЂРёРіР°РґС‹ VARCHAR2(14) NOT NULL,
+  Р‘СЂРёРіР°РґРёСЂ         VARCHAR2(15) NOT NULL,
+  РњР°СЃС‚РµСЂ           VARCHAR2(22) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKБригада ON CWБригада
-(Номер_бригады   ASC);
+CREATE UNIQUE INDEX XPKР‘СЂРёРіР°РґР°
+  ON CWР‘СЂРёРіР°РґР°
+  (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹ ASC);
 
-ALTER TABLE CWБригада
-	ADD CONSTRAINT  XPKБригада PRIMARY KEY (Номер_бригады);
+ALTER TABLE CWР‘СЂРёРіР°РґР°
+  ADD CONSTRAINT XPKР‘СЂРёРіР°РґР° PRIMARY KEY (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹);
 
-CREATE UNIQUE INDEX XAK2Бригада ON CWБригада
-(Название_бригады   ASC);
+CREATE UNIQUE INDEX XAK2Р‘СЂРёРіР°РґР°
+  ON CWР‘СЂРёРіР°РґР°
+  (РќР°Р·РІР°РЅРёРµ_Р±СЂРёРіР°РґС‹ ASC);
 
-ALTER TABLE CWБригада
-ADD CONSTRAINT  XAK2Бригада UNIQUE (Название_бригады);
+ALTER TABLE CWР‘СЂРёРіР°РґР°
+  ADD CONSTRAINT XAK2Р‘СЂРёРіР°РґР° UNIQUE (РќР°Р·РІР°РЅРёРµ_Р±СЂРёРіР°РґС‹);
 
-CREATE UNIQUE INDEX XAK1Бригада ON CWБригада
-(Бригадир   ASC);
+CREATE UNIQUE INDEX XAK1Р‘СЂРёРіР°РґР°
+  ON CWР‘СЂРёРіР°РґР°
+  (Р‘СЂРёРіР°РґРёСЂ ASC);
 
-ALTER TABLE CWБригада
-	ADD CONSTRAINT  Мастер_бриг_соотв_1274688691 CHECK  (SUBSTR(Мастер, 1, 6) = 'Мастер');
+ALTER TABLE CWР‘СЂРёРіР°РґР°
+  ADD CONSTRAINT РњР°СЃС‚РµСЂ_Р±СЂРёРі_СЃРѕРѕС‚РІ_1274688691 CHECK (SUBSTR(РњР°СЃС‚РµСЂ, 1, 6) = 'РњР°СЃС‚РµСЂ');
 
-ALTER TABLE CWБригада
-	MODIFY Номер_бригады CONSTRAINT  Номер_бригады_1200055689 CHECK (Номер_бригады >= 1);
+ALTER TABLE CWР‘СЂРёРіР°РґР°
+  MODIFY РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹ CONSTRAINT РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹_1200055689 CHECK (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹ >= 1);
 
-CREATE INDEX XIE3Бригада ON CWБригада
-(Мастер   ASC);
+CREATE INDEX XIE3Р‘СЂРёРіР°РґР°
+  ON CWР‘СЂРёРіР°РґР°
+  (РњР°СЃС‚РµСЂ ASC);
 
-CREATE TABLE CWВид_изделия
+CREATE TABLE CWР’РёРґ_РёР·РґРµР»РёСЏ
 (
-	Номер_вида_изделия   VARCHAR2(4) NOT NULL ,
-	Номер_категории_изделия VARCHAR2(3) NOT NULL ,
-	Название_вида_изделия VARCHAR2(18) NOT NULL 
+  РќРѕРјРµСЂ_РІРёРґР°_РёР·РґРµР»РёСЏ    VARCHAR2(3)  NOT NULL,
+  РљРѕРґ_РІРёРґР°              VARCHAR2(12) NOT NULL,
+  РўРёРї_РєР°С‚РµРіРѕСЂРёРё         VARCHAR2(9)  NOT NULL,
+  РќР°Р·РІР°РЅРёРµ_РІРёРґР°_РёР·РґРµР»РёСЏ VARCHAR2(18) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKВид_изделия ON CWВид_изделия
-(Номер_вида_изделия   ASC);
+CREATE UNIQUE INDEX XPKРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  ON CWР’РёРґ_РёР·РґРµР»РёСЏ
+  (РќРѕРјРµСЂ_РІРёРґР°_РёР·РґРµР»РёСЏ ASC);
 
-ALTER TABLE CWВид_изделия
-	ADD CONSTRAINT  XPKВид_изделия PRIMARY KEY (Номер_вида_изделия);
+ALTER TABLE CWР’РёРґ_РёР·РґРµР»РёСЏ
+  ADD CONSTRAINT XPKРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ PRIMARY KEY (РќРѕРјРµСЂ_РІРёРґР°_РёР·РґРµР»РёСЏ);
 
-CREATE UNIQUE INDEX XAK1Вид_изделия ON CWВид_изделия
-(Название_вида_изделия   ASC);
+CREATE UNIQUE INDEX XAK2РљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  ON CWР’РёРґ_РёР·РґРµР»РёСЏ
+  (РљРѕРґ_РІРёРґР° ASC);
 
-ALTER TABLE CWВид_изделия
-ADD CONSTRAINT  XAK1Вид_изделия UNIQUE (Название_вида_изделия);
+ALTER TABLE CWР’РёРґ_РёР·РґРµР»РёСЏ
+  ADD CONSTRAINT XAK2РљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ UNIQUE (РљРѕРґ_РІРёРґР°);
 
-CREATE INDEX XIE1Вид_изделия ON CWВид_изделия
-(Номер_категории_изделия   ASC);
+ALTER TABLE CWР’РёРґ_РёР·РґРµР»РёСЏ
+  ADD CONSTRAINT РљР°С‚_РёР·Рґ_СЃРѕРѕС‚РІ_1333772069 CHECK (РўРёРї_РєР°С‚РµРіРѕСЂРёРё || РќРѕРјРµСЂ_РІРёРґР°_РёР·РґРµР»РёСЏ = РљРѕРґ_РІРёРґР°);
 
-CREATE TABLE CWВспомогательный_цех
+CREATE INDEX XIE1РљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  ON CWР’РёРґ_РёР·РґРµР»РёСЏ
+  (РўРёРї_РєР°С‚РµРіРѕСЂРёРё ASC);
+
+CREATE TABLE CWР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС…
 (
-	Тип_вспомогательного_цеха VARCHAR2(13) NOT NULL ,
-	Номер_цеха           VARCHAR2(4) NOT NULL 
+  РўРёРї_РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ_С†РµС…Р° VARCHAR2(13) NOT NULL,
+  РќРѕРјРµСЂ_С†РµС…Р°                VARCHAR2(4)  NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKВспомогательный_цех ON CWВспомогательный_цех
-(Номер_цеха   ASC);
+CREATE UNIQUE INDEX XPKР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС…
+  ON CWР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС…
+  (РќРѕРјРµСЂ_С†РµС…Р° ASC);
 
-ALTER TABLE CWВспомогательный_цех
-	ADD CONSTRAINT  XPKВспомогательный_цех PRIMARY KEY (Номер_цеха);
+ALTER TABLE CWР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС…
+  ADD CONSTRAINT XPKР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС… PRIMARY KEY (РќРѕРјРµСЂ_С†РµС…Р°);
 
-ALTER TABLE CWВспомогательный_цех
-	ADD CONSTRAINT  Вспомагат_соотв_1592414896 CHECK  (SUBSTR(Номер_цеха, 1, 1) = 'В'
+ALTER TABLE CWР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС…
+  ADD CONSTRAINT Р’СЃРїРѕРјР°РіР°С‚_СЃРѕРѕС‚РІ_1592414896 CHECK (SUBSTR(РќРѕРјРµСЂ_С†РµС…Р°, 1, 1) = 'Р’'
 );
 
-ALTER TABLE CWВспомогательный_цех
-	MODIFY Тип_вспомогательного_цеха CONSTRAINT  Вспомогат_цех_1656618676 CHECK (Тип_вспомогательного_цеха IN ('ремонтный', 'тестировочный'));
+ALTER TABLE CWР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС…
+  MODIFY РўРёРї_РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ_С†РµС…Р° CONSTRAINT Р’СЃРїРѕРјРѕРіР°С‚_С†РµС…_1656618676 CHECK (РўРёРї_РІСЃРїРѕРјРѕРіР°С‚РµР»СЊРЅРѕРіРѕ_С†РµС…Р° IN
+                                                                              ('СЂРµРјРѕРЅС‚РЅС‹Р№', 'С‚РµСЃС‚РёСЂРѕРІРѕС‡РЅС‹Р№'));
 
-ALTER TABLE CWВспомогательный_цех
-	MODIFY Номер_цеха CONSTRAINT  Номер_цеха_478363869 CHECK ((SUBSTR(Номер_цеха, 1, 1) = 'П'
-OR SUBSTR(Номер_цеха, 1, 1) = 'В')
-AND LENGTH(Номер_цеха) = 4
+ALTER TABLE CWР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС…
+  MODIFY РќРѕРјРµСЂ_С†РµС…Р° CONSTRAINT РќРѕРјРµСЂ_С†РµС…Р°_478363869 CHECK ((SUBSTR(РќРѕРјРµСЂ_С†РµС…Р°, 1, 1) = 'Рџ'
+                                                            OR SUBSTR(РќРѕРјРµСЂ_С†РµС…Р°, 1, 1) = 'Р’')
+                                                           AND LENGTH(РќРѕРјРµСЂ_С†РµС…Р°) = 4
 );
 
-CREATE TABLE CWГрузовые_автомобили
+CREATE TABLE CWР“СЂСѓР·РѕРІС‹Рµ_Р°РІС‚РѕРјРѕР±РёР»Рё
 (
-	Грузоподъемность     NUMBER(5,0) NOT NULL ,
-	Код_категории        VARCHAR2(12) NOT NULL 
+  Р“СЂСѓР·РѕРїРѕРґСЉРµРјРЅРѕСЃС‚СЊ NUMBER(5, 0) NOT NULL,
+  РљРѕРґ_РІРёРґР°         VARCHAR2(12) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKГрузовые_автомобили ON CWГрузовые_автомобили
-(Код_категории   ASC);
+CREATE UNIQUE INDEX XPKР“СЂСѓР·РѕРІС‹Рµ_Р°РІС‚РѕРјРѕР±РёР»Рё
+  ON CWР“СЂСѓР·РѕРІС‹Рµ_Р°РІС‚РѕРјРѕР±РёР»Рё
+  (РљРѕРґ_РІРёРґР° ASC);
 
-ALTER TABLE CWГрузовые_автомобили
-	ADD CONSTRAINT  XPKГрузовые_автомобили PRIMARY KEY (Код_категории);
+ALTER TABLE CWР“СЂСѓР·РѕРІС‹Рµ_Р°РІС‚РѕРјРѕР±РёР»Рё
+  ADD CONSTRAINT XPKР“СЂСѓР·РѕРІС‹Рµ_Р°РІС‚РѕРјРѕР±РёР»Рё PRIMARY KEY (РљРѕРґ_РІРёРґР°);
 
-ALTER TABLE CWГрузовые_автомобили
-	ADD CONSTRAINT  Грузовые_соотв_1823080338 CHECK  (SUBSTR(Код_категории, 1, 8) = 'Грузовые');
+ALTER TABLE CWР“СЂСѓР·РѕРІС‹Рµ_Р°РІС‚РѕРјРѕР±РёР»Рё
+  ADD CONSTRAINT Р“СЂСѓР·РѕРІС‹Рµ_СЃРѕРѕС‚РІ_1823080338 CHECK (SUBSTR(РљРѕРґ_РІРёРґР°, 1, 8) = 'Р“СЂСѓР·РѕРІС‹Рµ');
 
-ALTER TABLE CWГрузовые_автомобили
-	MODIFY Грузоподъемность CONSTRAINT  Полож_1841523636 CHECK (Грузоподъемность >= 0);
+ALTER TABLE CWР“СЂСѓР·РѕРІС‹Рµ_Р°РІС‚РѕРјРѕР±РёР»Рё
+  MODIFY Р“СЂСѓР·РѕРїРѕРґСЉРµРјРЅРѕСЃС‚СЊ CONSTRAINT РџРѕР»РѕР¶_1841523636 CHECK (Р“СЂСѓР·РѕРїРѕРґСЉРµРјРЅРѕСЃС‚СЊ >= 0);
 
-CREATE TABLE CWЖурнал
+CREATE TABLE CWР–СѓСЂРЅР°Р»
 (
-	Начало               DATE NOT NULL ,
-	Конец                DATE NULL ,
-	Этап_жизненного_цикла VARCHAR2(18) NOT NULL ,
-	Номер_экземпляра     NUMBER(6,0) NOT NULL 
+  РќР°С‡Р°Р»Рѕ                DATE         NOT NULL,
+  РљРѕРЅРµС†                 DATE         NULL,
+  Р­С‚Р°Рї_Р¶РёР·РЅРµРЅРЅРѕРіРѕ_С†РёРєР»Р° VARCHAR2(18) NOT NULL,
+  РќРѕРјРµСЂ_СЌРєР·РµРјРїР»СЏСЂР°      NUMBER(6, 0) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKЖурнал ON CWЖурнал
-(Начало   ASC,Номер_экземпляра   ASC);
+CREATE UNIQUE INDEX XPKР–СѓСЂРЅР°Р»
+  ON CWР–СѓСЂРЅР°Р»
+  (РќР°С‡Р°Р»Рѕ ASC, РќРѕРјРµСЂ_СЌРєР·РµРјРїР»СЏСЂР° ASC);
 
-ALTER TABLE CWЖурнал
-	ADD CONSTRAINT  XPKЖурнал PRIMARY KEY (Начало,Номер_экземпляра);
+ALTER TABLE CWР–СѓСЂРЅР°Р»
+  ADD CONSTRAINT XPKР–СѓСЂРЅР°Р» PRIMARY KEY (РќР°С‡Р°Р»Рѕ, РќРѕРјРµСЂ_СЌРєР·РµРјРїР»СЏСЂР°);
 
-ALTER TABLE CWЖурнал
-	ADD CONSTRAINT  Соответствие_дат_1004688284 CHECK  (Начало < Конец);
+ALTER TABLE CWР–СѓСЂРЅР°Р»
+  ADD CONSTRAINT РЎРѕРѕС‚РІРµС‚СЃС‚РІРёРµ_РґР°С‚_1004688284 CHECK (РќР°С‡Р°Р»Рѕ < РљРѕРЅРµС†);
 
-ALTER TABLE CWЖурнал
-	MODIFY Этап_жизненного_цикла CONSTRAINT  Жизненный_цикл_1107733670 CHECK (Этап_жизненного_цикла IN ('Сборка', 'Передача дилеру', 'Гарантийный ремонт', 'Тестирование'));
+ALTER TABLE CWР–СѓСЂРЅР°Р»
+  MODIFY Р­С‚Р°Рї_Р¶РёР·РЅРµРЅРЅРѕРіРѕ_С†РёРєР»Р° CONSTRAINT Р–РёР·РЅРµРЅРЅС‹Р№_С†РёРєР»_1107733670 CHECK (Р­С‚Р°Рї_Р¶РёР·РЅРµРЅРЅРѕРіРѕ_С†РёРєР»Р° IN
+                                                                           ('РЎР±РѕСЂРєР°', 'РџРµСЂРµРґР°С‡Р° РґРёР»РµСЂСѓ', 'Р“Р°СЂР°РЅС‚РёР№РЅС‹Р№ СЂРµРјРѕРЅС‚', 'РўРµСЃС‚РёСЂРѕРІР°РЅРёРµ'));
 
-CREATE INDEX XIE1Журнал ON CWЖурнал
-(Номер_экземпляра   ASC);
+CREATE INDEX XIE1Р–СѓСЂРЅР°Р»
+  ON CWР–СѓСЂРЅР°Р»
+  (РќРѕРјРµСЂ_СЌРєР·РµРјРїР»СЏСЂР° ASC);
 
-CREATE TABLE CWИТП
+CREATE TABLE CWРРўРџ
 (
-	Код_сотрудника       VARCHAR2(15) NOT NULL 
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° VARCHAR2(15) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKИТП ON CWИТП
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKРРўРџ
+  ON CWРРўРџ
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWИТП
-	ADD CONSTRAINT  XPKИТП PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWРРўРџ
+  ADD CONSTRAINT XPKРРўРџ PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-ALTER TABLE CWИТП
-	ADD CONSTRAINT  ИТП_соотв_1970182668 CHECK  (SUBSTR(Код_сотрудника, 1, 1) = 'И');
+ALTER TABLE CWРРўРџ
+  ADD CONSTRAINT РРўРџ_СЃРѕРѕС‚РІ_1970182668 CHECK (SUBSTR(РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°, 1, 1) = 'Р');
 
-CREATE TABLE CWИнженер
+CREATE TABLE CWРР·РіРѕС‚РѕРІРёС‚РµР»СЊРЅС‹Р№_СѓС‡Р°СЃС‚РѕРє
 (
-	Специализация_инженера VARCHAR2(16) NOT NULL ,
-	Код_сотрудника       VARCHAR2(15) NOT NULL 
+  РљРѕРґ_СѓС‡Р°СЃС‚РєР°   VARCHAR2(16) NOT NULL,
+  Р§Р°СЃС‚СЊ_РёР·РґРµР»РёСЏ VARCHAR2(16) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKИнженер ON CWИнженер
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKРЎР±РѕСЂРєР°
+  ON CWРР·РіРѕС‚РѕРІРёС‚РµР»СЊРЅС‹Р№_СѓС‡Р°СЃС‚РѕРє
+  (РљРѕРґ_СѓС‡Р°СЃС‚РєР° ASC);
 
-ALTER TABLE CWИнженер
-	ADD CONSTRAINT  XPKИнженер PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWРР·РіРѕС‚РѕРІРёС‚РµР»СЊРЅС‹Р№_СѓС‡Р°СЃС‚РѕРє
+  ADD CONSTRAINT XPKРЎР±РѕСЂРєР° PRIMARY KEY (РљРѕРґ_СѓС‡Р°СЃС‚РєР°);
 
-ALTER TABLE CWИнженер
-	ADD CONSTRAINT  Инженер_соотв_2040157128 CHECK  (SUBSTR(Код_сотрудника, 2, 7) = 'Инженер');
+ALTER TABLE CWРР·РіРѕС‚РѕРІРёС‚РµР»СЊРЅС‹Р№_СѓС‡Р°СЃС‚РѕРє
+  ADD CONSTRAINT РЎР±РѕСЂРєР°_СѓС‡Р°СЃС‚РѕРє_528276976 CHECK (SUBSTR(РљРѕРґ_СѓС‡Р°СЃС‚РєР°, 5, 9) = 'РёР·РіРѕС‚РѕРІРєР°');
 
-ALTER TABLE CWИнженер
-	MODIFY Специализация_инженера CONSTRAINT  Специализация_инжен_1462496655 CHECK (Специализация_инженера IN ('проектирование', 'прототипирование'));
-
-CREATE TABLE CWКатегория_изделия
+CREATE TABLE CWРРЅР¶РµРЅРµСЂ
 (
-	Номер_категории_изделия VARCHAR2(3) NOT NULL ,
-	Код_категории        VARCHAR2(12) NOT NULL ,
-	Тип_категории        VARCHAR2(9) NOT NULL 
+  РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_РёРЅР¶РµРЅРµСЂР° VARCHAR2(16) NOT NULL,
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°         VARCHAR2(15) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKКатегория_изделия ON CWКатегория_изделия
-(Номер_категории_изделия   ASC);
+CREATE UNIQUE INDEX XPKРРЅР¶РµРЅРµСЂ
+  ON CWРРЅР¶РµРЅРµСЂ
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWКатегория_изделия
-	ADD CONSTRAINT  XPKКатегория_изделия PRIMARY KEY (Номер_категории_изделия);
+ALTER TABLE CWРРЅР¶РµРЅРµСЂ
+  ADD CONSTRAINT XPKРРЅР¶РµРЅРµСЂ PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-CREATE UNIQUE INDEX XAK2Категория_изделия ON CWКатегория_изделия
-(Код_категории   ASC);
+ALTER TABLE CWРРЅР¶РµРЅРµСЂ
+  ADD CONSTRAINT РРЅР¶РµРЅРµСЂ_СЃРѕРѕС‚РІ_2040157128 CHECK (SUBSTR(РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°, 2, 7) = 'РРЅР¶РµРЅРµСЂ');
 
-ALTER TABLE CWКатегория_изделия
-ADD CONSTRAINT  XAK2Категория_изделия UNIQUE (Код_категории);
+ALTER TABLE CWРРЅР¶РµРЅРµСЂ
+  MODIFY РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_РёРЅР¶РµРЅРµСЂР° CONSTRAINT РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_РёРЅР¶РµРЅ_1462496655 CHECK (РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_РёРЅР¶РµРЅРµСЂР° IN
+                                                                                 ('РїСЂРѕРµРєС‚РёСЂРѕРІР°РЅРёРµ', 'РїСЂРѕС‚РѕС‚РёРїРёСЂРѕРІР°РЅРёРµ'));
 
-ALTER TABLE CWКатегория_изделия
-	ADD CONSTRAINT  Кат_изд_соотв_1279441507 CHECK  (Тип_категории || Номер_категории_изделия = Код_категории);
-
-CREATE INDEX XIE1Категория_изделия ON CWКатегория_изделия
-(Тип_категории   ASC);
-
-CREATE TABLE CWМотоциклы
+CREATE TABLE CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
 (
-	Колво_тактов_мотора  NUMBER(1,0) NOT NULL ,
-	Код_категории        VARCHAR2(12) NOT NULL 
+  РўРёРї_РєР°С‚РµРіРѕСЂРёРё   VARCHAR2(9)  NOT NULL,
+  РќРѕРјРµСЂ_С†РµС…Р°      VARCHAR2(4)  NOT NULL,
+  РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС… VARCHAR2(13) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKМотоциклы ON CWМотоциклы
-(Код_категории   ASC);
+CREATE UNIQUE INDEX XPKРўРёР°_РєР°С‚РµРіРѕСЂРёРё
+  ON CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  (РўРёРї_РєР°С‚РµРіРѕСЂРёРё ASC);
 
-ALTER TABLE CWМотоциклы
-	ADD CONSTRAINT  XPKМотоциклы PRIMARY KEY (Код_категории);
+ALTER TABLE CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  ADD CONSTRAINT XPKРўРёР°_РєР°С‚РµРіРѕСЂРёРё PRIMARY KEY (РўРёРї_РєР°С‚РµРіРѕСЂРёРё);
 
-ALTER TABLE CWМотоциклы
-	ADD CONSTRAINT  Мотоциклы_соотв_1987687452 CHECK  (SUBSTR(Код_категории, 1, 9) = 'Мотоциклы');
+CREATE UNIQUE INDEX XAK1РўРёР°_РєР°С‚РµРіРѕСЂРёРё
+  ON CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  (РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС… ASC);
 
-ALTER TABLE CWМотоциклы
-	MODIFY Колво_тактов_мотора CONSTRAINT  Полож_1171472626 CHECK (Колво_тактов_мотора >= 0);
+ALTER TABLE CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  ADD CONSTRAINT XAK1РўРёР°_РєР°С‚РµРіРѕСЂРёРё UNIQUE (РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС…);
 
-CREATE TABLE CWПроизводственный_цех
+ALTER TABLE CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  ADD CONSTRAINT РљР°С‚_С†РµС…_220740898 CHECK (РќРѕРјРµСЂ_С†РµС…Р° || РўРёРї_РєР°С‚РµРіРѕСЂРёРё = РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС…);
+
+ALTER TABLE CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  MODIFY РўРёРї_РєР°С‚РµРіРѕСЂРёРё CONSTRAINT РўРёРї_РєР°С‚РµРіРѕСЂРёРё_2087399618 CHECK (РўРёРї_РєР°С‚РµРіРѕСЂРёРё IN
+                                                                  ('РњРѕС‚РѕС†РёРєР»С‹', 'РђРІС‚РѕР±СѓСЃС‹', 'Р“СЂСѓР·РѕРІС‹Рµ'));
+
+CREATE INDEX XIE1РўРёР°_РєР°С‚РµРіРѕСЂРёРё
+  ON CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  (РќРѕРјРµСЂ_С†РµС…Р° ASC);
+
+CREATE TABLE CWРњРѕС‚РѕС†РёРєР»С‹
 (
-	Номер_цеха           VARCHAR2(4) NOT NULL ,
-	Количество_сбор_конв NUMBER(2,0) NOT NULL 
+  РљРѕР»РІРѕ_С‚Р°РєС‚РѕРІ_РјРѕС‚РѕСЂР° NUMBER(1, 0) NOT NULL,
+  РљРѕРґ_РІРёРґР°            VARCHAR2(12) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKПроизводственный_цех ON CWПроизводственный_цех
-(Номер_цеха   ASC);
+CREATE UNIQUE INDEX XPKРњРѕС‚РѕС†РёРєР»С‹
+  ON CWРњРѕС‚РѕС†РёРєР»С‹
+  (РљРѕРґ_РІРёРґР° ASC);
 
-ALTER TABLE CWПроизводственный_цех
-	ADD CONSTRAINT  XPKПроизводственный_цех PRIMARY KEY (Номер_цеха);
+ALTER TABLE CWРњРѕС‚РѕС†РёРєР»С‹
+  ADD CONSTRAINT XPKРњРѕС‚РѕС†РёРєР»С‹ PRIMARY KEY (РљРѕРґ_РІРёРґР°);
 
-ALTER TABLE CWПроизводственный_цех
-	ADD CONSTRAINT  Производств_соотв_1637157749 CHECK  (SUBSTR(Номер_цеха, 1, 1) = 'П' 
-);
+ALTER TABLE CWРњРѕС‚РѕС†РёРєР»С‹
+  ADD CONSTRAINT РњРѕС‚РѕС†РёРєР»С‹_СЃРѕРѕС‚РІ_1987687452 CHECK (SUBSTR(РљРѕРґ_РІРёРґР°, 1, 9) = 'РњРѕС‚РѕС†РёРєР»С‹');
 
-ALTER TABLE CWПроизводственный_цех
-	MODIFY Номер_цеха CONSTRAINT  Номер_цеха_1884848667 CHECK ((SUBSTR(Номер_цеха, 1, 1) = 'П'
-OR SUBSTR(Номер_цеха, 1, 1) = 'В')
-AND LENGTH(Номер_цеха) = 4
-);
+ALTER TABLE CWРњРѕС‚РѕС†РёРєР»С‹
+  MODIFY РљРѕР»РІРѕ_С‚Р°РєС‚РѕРІ_РјРѕС‚РѕСЂР° CONSTRAINT РџРѕР»РѕР¶_1171472626 CHECK (РљРѕР»РІРѕ_С‚Р°РєС‚РѕРІ_РјРѕС‚РѕСЂР° >= 0);
 
-ALTER TABLE CWПроизводственный_цех
-	MODIFY Количество_сбор_конв CONSTRAINT  Колво_сбор_конв_1425966559 CHECK (Количество_сбор_конв >= 0);
-
-CREATE TABLE CWРаботы
+CREATE TABLE CWРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС…
 (
-	Номер_бригады        NUMBER(3,0) NOT NULL ,
-	Категорский_цех      VARCHAR2(13) NOT NULL ,
-	Код_участка          VARCHAR2(7) NOT NULL 
+  РќРѕРјРµСЂ_С†РµС…Р°           VARCHAR2(4)  NOT NULL,
+  РљРѕР»РёС‡РµСЃС‚РІРѕ_СЃР±РѕСЂ_РєРѕРЅРІ NUMBER(2, 0) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKРаботы ON CWРаботы
-(Код_участка   ASC,Категорский_цех   ASC);
+CREATE UNIQUE INDEX XPKРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС…
+  ON CWРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС…
+  (РќРѕРјРµСЂ_С†РµС…Р° ASC);
 
-ALTER TABLE CWРаботы
-	ADD CONSTRAINT  XPKРаботы PRIMARY KEY (Код_участка,Категорский_цех);
+ALTER TABLE CWРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС…
+  ADD CONSTRAINT XPKРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС… PRIMARY KEY (РќРѕРјРµСЂ_С†РµС…Р°);
 
-ALTER TABLE CWРаботы
-	ADD CONSTRAINT  Работы_соотв_669910881 CHECK  (SUBSTR(Код_участка, 1, 4) = SUBSTR(Категорский_цех, 1, 4));
+ALTER TABLE CWРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС…
+  ADD CONSTRAINT РџСЂРѕРёР·РІРѕРґСЃС‚РІ_СЃРѕРѕС‚РІ_1637157749 CHECK (SUBSTR(РќРѕРјРµСЂ_С†РµС…Р°, 1, 1) = 'Рџ'
+);
 
-CREATE INDEX XIE3Работы ON CWРаботы
-(Номер_бригады   ASC);
+ALTER TABLE CWРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС…
+  MODIFY РќРѕРјРµСЂ_С†РµС…Р° CONSTRAINT РќРѕРјРµСЂ_С†РµС…Р°_1884848667 CHECK ((SUBSTR(РќРѕРјРµСЂ_С†РµС…Р°, 1, 1) = 'Рџ'
+                                                             OR SUBSTR(РќРѕРјРµСЂ_С†РµС…Р°, 1, 1) = 'Р’')
+                                                            AND LENGTH(РќРѕРјРµСЂ_С†РµС…Р°) = 4
+);
 
-CREATE INDEX XIE4Работы ON CWРаботы
-(Категорский_цех   ASC);
+ALTER TABLE CWРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС…
+  MODIFY РљРѕР»РёС‡РµСЃС‚РІРѕ_СЃР±РѕСЂ_РєРѕРЅРІ CONSTRAINT РљРѕР»РІРѕ_СЃР±РѕСЂ_РєРѕРЅРІ_1425966559 CHECK (РљРѕР»РёС‡РµСЃС‚РІРѕ_СЃР±РѕСЂ_РєРѕРЅРІ >= 0);
 
-CREATE TABLE CWРабочий
+CREATE TABLE CWР Р°Р±РѕС‚С‹
 (
-	Номер_бригады        NUMBER(3,0) NULL ,
-	Код_сотрудника       VARCHAR2(15) NOT NULL 
+  РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹   NUMBER(3, 0) NOT NULL,
+  РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС… VARCHAR2(13) NOT NULL,
+  РљРѕРґ_СѓС‡Р°СЃС‚РєР°     VARCHAR2(16) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKРабочий ON CWРабочий
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKР Р°Р±РѕС‚С‹
+  ON CWР Р°Р±РѕС‚С‹
+  (РљРѕРґ_СѓС‡Р°СЃС‚РєР° ASC, РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС… ASC);
 
-ALTER TABLE CWРабочий
-	ADD CONSTRAINT  XPKРабочий PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWР Р°Р±РѕС‚С‹
+  ADD CONSTRAINT XPKР Р°Р±РѕС‚С‹ PRIMARY KEY (РљРѕРґ_СѓС‡Р°СЃС‚РєР°, РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС…);
 
-ALTER TABLE CWРабочий
-	ADD CONSTRAINT  Рабочий_соотв_2122034973 CHECK  (SUBSTR(Код_сотрудника, 1, 1) = 'Р');
+ALTER TABLE CWР Р°Р±РѕС‚С‹
+  ADD CONSTRAINT Р Р°Р±РѕС‚С‹_СЃРѕРѕС‚РІ_669910881 CHECK (SUBSTR(РљРѕРґ_СѓС‡Р°СЃС‚РєР°, 1, 4) = SUBSTR(РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС…, 1, 4));
 
-ALTER TABLE CWРабочий
-	MODIFY Номер_бригады CONSTRAINT  Номер_бригады_1401248355 CHECK (Номер_бригады >= 1);
+CREATE INDEX XIE3Р Р°Р±РѕС‚С‹
+  ON CWР Р°Р±РѕС‚С‹
+  (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹ ASC);
 
-CREATE INDEX XIE1Рабочий ON CWРабочий
-(Номер_бригады   ASC);
+CREATE INDEX XIE4Р Р°Р±РѕС‚С‹
+  ON CWР Р°Р±РѕС‚С‹
+  (РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС… ASC);
 
-CREATE TABLE CWРуководитель
+CREATE TABLE CWР Р°Р±РѕС‡РёР№
 (
-	Код_сотрудника       VARCHAR2(15) NOT NULL ,
-	Ответственность      VARCHAR2(7) NOT NULL ,
-	Код_ответств         VARCHAR2(22) NOT NULL 
+  РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹  NUMBER(3, 0) NULL,
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° VARCHAR2(15) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKРуководитель ON CWРуководитель
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKР Р°Р±РѕС‡РёР№
+  ON CWР Р°Р±РѕС‡РёР№
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWРуководитель
-	ADD CONSTRAINT  XPKРуководитель PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWР Р°Р±РѕС‡РёР№
+  ADD CONSTRAINT XPKР Р°Р±РѕС‡РёР№ PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-CREATE UNIQUE INDEX XAK1Руководитель ON CWРуководитель
-(Код_ответств   ASC);
+ALTER TABLE CWР Р°Р±РѕС‡РёР№
+  ADD CONSTRAINT Р Р°Р±РѕС‡РёР№_СЃРѕРѕС‚РІ_2122034973 CHECK (SUBSTR(РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°, 1, 1) = 'Р ');
 
-ALTER TABLE CWРуководитель
-ADD CONSTRAINT  XAK1Руководитель UNIQUE (Код_ответств);
+ALTER TABLE CWР Р°Р±РѕС‡РёР№
+  MODIFY РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹ CONSTRAINT РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹_1401248355 CHECK (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹ >= 1);
 
-ALTER TABLE CWРуководитель
-	ADD CONSTRAINT  Код_ответсв_1918082216 CHECK  (Ответственность || Код_сотрудника = Код_ответств);
+CREATE INDEX XIE1Р Р°Р±РѕС‡РёР№
+  ON CWР Р°Р±РѕС‡РёР№
+  (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹ ASC);
 
-ALTER TABLE CWРуководитель
-	MODIFY Ответственность CONSTRAINT  Руковолитель_отвественность CHECK (Ответственность IN ('Участок', 'Цех', 'Мастер'));
-
-CREATE TABLE CWСборщик
+CREATE TABLE CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ
 (
-	Специализация_сборщика VARCHAR2(9) NOT NULL ,
-	Код_сотрудника       VARCHAR2(15) NOT NULL 
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°  VARCHAR2(15) NOT NULL,
+  РћС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ VARCHAR2(7)  NOT NULL,
+  РљРѕРґ_РѕС‚РІРµС‚СЃС‚РІ    VARCHAR2(22) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKСбощик ON CWСборщик
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKР СѓРєРѕРІРѕРґРёС‚РµР»СЊ
+  ON CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWСборщик
-	ADD CONSTRAINT  XPKСбощик PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ
+  ADD CONSTRAINT XPKР СѓРєРѕРІРѕРґРёС‚РµР»СЊ PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-ALTER TABLE CWСборщик
-	ADD CONSTRAINT  Сборщик_соотв_2053938968 CHECK  (SUBSTR(Код_сотрудника, 2, 7) = 'Сборщик');
+CREATE UNIQUE INDEX XAK1Р СѓРєРѕРІРѕРґРёС‚РµР»СЊ
+  ON CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ
+  (РљРѕРґ_РѕС‚РІРµС‚СЃС‚РІ ASC);
 
-ALTER TABLE CWСборщик
-	MODIFY Специализация_сборщика CONSTRAINT  Сбрщик_спец_1691720949 CHECK (Специализация_сборщика IN ('двигатель', 'подвеска', 'кузов'));
+ALTER TABLE CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ
+  ADD CONSTRAINT XAK1Р СѓРєРѕРІРѕРґРёС‚РµР»СЊ UNIQUE (РљРѕРґ_РѕС‚РІРµС‚СЃС‚РІ);
 
-CREATE TABLE CWСварщик
+ALTER TABLE CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ
+  ADD CONSTRAINT РљРѕРґ_РѕС‚РІРµС‚СЃРІ_1918082216 CHECK (РћС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ || РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° = РљРѕРґ_РѕС‚РІРµС‚СЃС‚РІ);
+
+ALTER TABLE CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ
+  MODIFY РћС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ CONSTRAINT Р СѓРєРѕРІРѕР»РёС‚РµР»СЊ_РѕС‚РІРµСЃС‚РІРµРЅРЅРѕСЃС‚СЊ CHECK (РћС‚РІРµС‚СЃС‚РІРµРЅРЅРѕСЃС‚СЊ IN ('РЈС‡Р°СЃС‚РѕРє', 'Р¦РµС…', 'РњР°СЃС‚РµСЂ'));
+
+CREATE TABLE CWРЎР±РѕСЂС‰РёРє
 (
-	Специализвация_сварщика VARCHAR2(8) NOT NULL ,
-	Код_сотрудника       VARCHAR2(15) NOT NULL 
+  РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_СЃР±РѕСЂС‰РёРєР° VARCHAR2(9)  NOT NULL,
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°         VARCHAR2(15) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKСварщик ON CWСварщик
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKРЎР±РѕС‰РёРє
+  ON CWРЎР±РѕСЂС‰РёРє
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWСварщик
-	ADD CONSTRAINT  XPKСварщик PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWРЎР±РѕСЂС‰РёРє
+  ADD CONSTRAINT XPKРЎР±РѕС‰РёРє PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-ALTER TABLE CWСварщик
-	MODIFY Специализвация_сварщика CONSTRAINT  Сварщик_спец_1889797129 CHECK (Специализвация_сварщика IN ('подвеска', 'рама'));
+ALTER TABLE CWРЎР±РѕСЂС‰РёРє
+  ADD CONSTRAINT РЎР±РѕСЂС‰РёРє_СЃРѕРѕС‚РІ_2053938968 CHECK (SUBSTR(РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°, 2, 7) = 'РЎР±РѕСЂС‰РёРє');
 
-CREATE TABLE CWСлесарь
+ALTER TABLE CWРЎР±РѕСЂС‰РёРє
+  MODIFY РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_СЃР±РѕСЂС‰РёРєР° CONSTRAINT РЎР±СЂС‰РёРє_СЃРїРµС†_1691720949 CHECK (РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_СЃР±РѕСЂС‰РёРєР° IN
+                                                                         ('РґРІРёРіР°С‚РµР»СЊ', 'РїРѕРґРІРµСЃРєР°', 'РєСѓР·РѕРІ'));
+
+CREATE TABLE CWРЎРІР°СЂС‰РёРє
 (
-	Разряд_слесаря       NUMBER(1,0) NOT NULL ,
-	Код_сотрудника       VARCHAR2(15) NOT NULL 
+  РЎРїРµС†РёР°Р»РёР·РІР°С†РёСЏ_СЃРІР°СЂС‰РёРєР° VARCHAR2(8)  NOT NULL,
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°          VARCHAR2(15) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKСлесарь ON CWСлесарь
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKРЎРІР°СЂС‰РёРє
+  ON CWРЎРІР°СЂС‰РёРє
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWСлесарь
-	ADD CONSTRAINT  XPKСлесарь PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWРЎРІР°СЂС‰РёРє
+  ADD CONSTRAINT XPKРЎРІР°СЂС‰РёРє PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-ALTER TABLE CWСлесарь
-	ADD CONSTRAINT  Слесарь_соотв_2125359824 CHECK  (SUBSTR(Код_сотрудника, 2, 7) = 'Слесарь');
+ALTER TABLE CWРЎРІР°СЂС‰РёРє
+  MODIFY РЎРїРµС†РёР°Р»РёР·РІР°С†РёСЏ_СЃРІР°СЂС‰РёРєР° CONSTRAINT РЎРІР°СЂС‰РёРє_СЃРїРµС†_1889797129 CHECK (РЎРїРµС†РёР°Р»РёР·РІР°С†РёСЏ_СЃРІР°СЂС‰РёРєР° IN
+                                                                           ('РїРѕРґРІРµСЃРєР°', 'СЂР°РјР°'));
 
-ALTER TABLE CWСлесарь
-	MODIFY Разряд_слесаря CONSTRAINT  Слесарь_разряд_1046431093 CHECK (Разряд_слесаря BETWEEN 1 AND 6);
-
-CREATE TABLE CWСотрудник
+CREATE TABLE CWРЎР»РµСЃР°СЂСЊ
 (
-	Номер_договора       VARCHAR2(6) NOT NULL ,
-	Имя_сотрудника       VARCHAR2(14) NOT NULL ,
-	Фамилия_сотрудника   VARCHAR2(16) NOT NULL ,
-	Отчество_сотрудника  VARCHAR2(16) NULL ,
-	Тип_сотрудника       VARCHAR2(1) NOT NULL ,
-	Дата_рождения        DATE NULL ,
-	Код_сотрудника       VARCHAR2(15) NOT NULL ,
-	Должность_сотрудника VARCHAR2(8) NULL 
+  Р Р°Р·СЂСЏРґ_СЃР»РµСЃР°СЂСЏ NUMBER(1, 0) NOT NULL,
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° VARCHAR2(15) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKСотрудник ON CWСотрудник
-(Номер_договора   ASC);
+CREATE UNIQUE INDEX XPKРЎР»РµСЃР°СЂСЊ
+  ON CWРЎР»РµСЃР°СЂСЊ
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWСотрудник
-	ADD CONSTRAINT  XPKСотрудник PRIMARY KEY (Номер_договора);
+ALTER TABLE CWРЎР»РµСЃР°СЂСЊ
+  ADD CONSTRAINT XPKРЎР»РµСЃР°СЂСЊ PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-CREATE UNIQUE INDEX XAK1Сотрудник ON CWСотрудник
-(Код_сотрудника   ASC);
+ALTER TABLE CWРЎР»РµСЃР°СЂСЊ
+  ADD CONSTRAINT РЎР»РµСЃР°СЂСЊ_СЃРѕРѕС‚РІ_2125359824 CHECK (SUBSTR(РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°, 2, 7) = 'РЎР»РµСЃР°СЂСЊ');
 
-ALTER TABLE CWСотрудник
-ADD CONSTRAINT  XAK1Сотрудник UNIQUE (Код_сотрудника);
+ALTER TABLE CWРЎР»РµСЃР°СЂСЊ
+  MODIFY Р Р°Р·СЂСЏРґ_СЃР»РµСЃР°СЂСЏ CONSTRAINT РЎР»РµСЃР°СЂСЊ_СЂР°Р·СЂСЏРґ_1046431093 CHECK (Р Р°Р·СЂСЏРґ_СЃР»РµСЃР°СЂСЏ BETWEEN 1 AND 6);
 
-ALTER TABLE CWСотрудник
-	ADD CONSTRAINT  Код_сотрудника_152408122 CHECK  (Тип_сотрудника || Должность_сотрудника || Номер_договора = Код_сотрудника);
-
-ALTER TABLE CWСотрудник
-	MODIFY Тип_сотрудника CONSTRAINT  Тип_сотрудник_1488454748 CHECK (Тип_сотрудника IN ('Р', 'И'));
-
-ALTER TABLE CWСотрудник
-	MODIFY Должность_сотрудника CONSTRAINT  Должность_сотрудника_195850548 CHECK (Должность_сотрудника IN ('Сборщик', 'Токарь', 'Слесарь', 'Сварщик', 'Технолог', 'Техник', 'Инженер'));
-
-ALTER TABLE CWСотрудник
-	MODIFY Отчество_сотрудника DEFAULT 'Нет отчества';
-
-CREATE TABLE CWТехник
+CREATE TABLE CWРЎРѕС‚СЂСѓРґРЅРёРє
 (
-	Специализация_техника VARCHAR2(7) NOT NULL ,
-	Код_сотрудника       VARCHAR2(15) NOT NULL 
+  РќРѕРјРµСЂ_РґРѕРіРѕРІРѕСЂР°       VARCHAR2(6)  NOT NULL,
+  РРјСЏ_СЃРѕС‚СЂСѓРґРЅРёРєР°       VARCHAR2(14) NOT NULL,
+  Р¤Р°РјРёР»РёСЏ_СЃРѕС‚СЂСѓРґРЅРёРєР°   VARCHAR2(16) NOT NULL,
+  РћС‚С‡РµСЃС‚РІРѕ_СЃРѕС‚СЂСѓРґРЅРёРєР°  VARCHAR2(16) NULL,
+  РўРёРї_СЃРѕС‚СЂСѓРґРЅРёРєР°       VARCHAR2(1)  NOT NULL,
+  Р”Р°С‚Р°_СЂРѕР¶РґРµРЅРёСЏ        DATE         NULL,
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°       VARCHAR2(15) NOT NULL,
+  Р”РѕР»Р¶РЅРѕСЃС‚СЊ_СЃРѕС‚СЂСѓРґРЅРёРєР° VARCHAR2(8)  NULL
 );
 
-CREATE UNIQUE INDEX XPKТехник ON CWТехник
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKРЎРѕС‚СЂСѓРґРЅРёРє
+  ON CWРЎРѕС‚СЂСѓРґРЅРёРє
+  (РќРѕРјРµСЂ_РґРѕРіРѕРІРѕСЂР° ASC);
 
-ALTER TABLE CWТехник
-	ADD CONSTRAINT  XPKТехник PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWРЎРѕС‚СЂСѓРґРЅРёРє
+  ADD CONSTRAINT XPKРЎРѕС‚СЂСѓРґРЅРёРє PRIMARY KEY (РќРѕРјРµСЂ_РґРѕРіРѕРІРѕСЂР°);
 
-ALTER TABLE CWТехник
-	ADD CONSTRAINT  Техник_соотв_469433198 CHECK  (SUBSTR(Код_сотрудника, 2, 6) = 'Техник');
+CREATE UNIQUE INDEX XAK1РЎРѕС‚СЂСѓРґРЅРёРє
+  ON CWРЎРѕС‚СЂСѓРґРЅРёРє
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWТехник
-	MODIFY Специализация_техника CONSTRAINT  Специализация_техни_1611615165 CHECK (Специализация_техника IN ('схемы', 'чертежи'));
+ALTER TABLE CWРЎРѕС‚СЂСѓРґРЅРёРє
+  ADD CONSTRAINT XAK1РЎРѕС‚СЂСѓРґРЅРёРє UNIQUE (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-CREATE TABLE CWТехнолог
+ALTER TABLE CWРЎРѕС‚СЂСѓРґРЅРёРє
+  ADD CONSTRAINT РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°_152408122 CHECK (РўРёРї_СЃРѕС‚СЂСѓРґРЅРёРєР° || Р”РѕР»Р¶РЅРѕСЃС‚СЊ_СЃРѕС‚СЂСѓРґРЅРёРєР° || РќРѕРјРµСЂ_РґРѕРіРѕРІРѕСЂР° =
+                                                 РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
+
+ALTER TABLE CWРЎРѕС‚СЂСѓРґРЅРёРє
+  MODIFY РўРёРї_СЃРѕС‚СЂСѓРґРЅРёРєР° CONSTRAINT РўРёРї_СЃРѕС‚СЂСѓРґРЅРёРє_1488454748 CHECK (РўРёРї_СЃРѕС‚СЂСѓРґРЅРёРєР° IN ('Р ', 'Р'));
+
+ALTER TABLE CWРЎРѕС‚СЂСѓРґРЅРёРє
+  MODIFY Р”РѕР»Р¶РЅРѕСЃС‚СЊ_СЃРѕС‚СЂСѓРґРЅРёРєР° CONSTRAINT Р”РѕР»Р¶РЅРѕСЃС‚СЊ_СЃРѕС‚СЂСѓРґРЅРёРєР°_195850548 CHECK (Р”РѕР»Р¶РЅРѕСЃС‚СЊ_СЃРѕС‚СЂСѓРґРЅРёРєР° IN
+                                                                               ('РЎР±РѕСЂС‰РёРє', 'РўРѕРєР°СЂСЊ', 'РЎР»РµСЃР°СЂСЊ', 'РЎРІР°СЂС‰РёРє', 'РўРµС…РЅРѕР»РѕРі', 'РўРµС…РЅРёРє', 'РРЅР¶РµРЅРµСЂ'));
+
+ALTER TABLE CWРЎРѕС‚СЂСѓРґРЅРёРє
+  MODIFY РћС‚С‡РµСЃС‚РІРѕ_СЃРѕС‚СЂСѓРґРЅРёРєР° DEFAULT 'РќРµС‚ РѕС‚С‡РµСЃС‚РІР°';
+
+CREATE TABLE CWРўРµС…РЅРёРє
 (
-	Специализация_технолога VARCHAR2(12) NOT NULL ,
-	Код_сотрудника       VARCHAR2(15) NOT NULL 
+  РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_С‚РµС…РЅРёРєР° VARCHAR2(7)  NOT NULL,
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°        VARCHAR2(15) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKТехнолог ON CWТехнолог
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKРўРµС…РЅРёРє
+  ON CWРўРµС…РЅРёРє
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWТехнолог
-	ADD CONSTRAINT  XPKТехнолог PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWРўРµС…РЅРёРє
+  ADD CONSTRAINT XPKРўРµС…РЅРёРє PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-ALTER TABLE CWТехнолог
-	ADD CONSTRAINT  Технолог_соотв_68561289 CHECK  (SUBSTR(Код_сотрудника, 2, 8) = 'Технолог');
+ALTER TABLE CWРўРµС…РЅРёРє
+  ADD CONSTRAINT РўРµС…РЅРёРє_СЃРѕРѕС‚РІ_469433198 CHECK (SUBSTR(РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°, 2, 6) = 'РўРµС…РЅРёРє');
 
-ALTER TABLE CWТехнолог
-	MODIFY Специализация_технолога CONSTRAINT  Технолог_спец_210397916 CHECK (Специализация_технолога IN ('исследования', 'практика'));
+ALTER TABLE CWРўРµС…РЅРёРє
+  MODIFY РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_С‚РµС…РЅРёРєР° CONSTRAINT РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_С‚РµС…РЅРё_1611615165 CHECK (РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_С‚РµС…РЅРёРєР° IN
+                                                                                ('СЃС…РµРјС‹', 'С‡РµСЂС‚РµР¶Рё'));
 
-CREATE TABLE CWТип_категории
+CREATE TABLE CWРўРµС…РЅРѕР»РѕРі
 (
-	Тип_категории        VARCHAR2(9) NOT NULL ,
-	Номер_цеха           VARCHAR2(4) NOT NULL ,
-	Категорский_цех      VARCHAR2(13) NOT NULL 
+  РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_С‚РµС…РЅРѕР»РѕРіР° VARCHAR2(12) NOT NULL,
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°          VARCHAR2(15) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKТиа_категории ON CWТип_категории
-(Тип_категории   ASC);
+CREATE UNIQUE INDEX XPKРўРµС…РЅРѕР»РѕРі
+  ON CWРўРµС…РЅРѕР»РѕРі
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWТип_категории
-	ADD CONSTRAINT  XPKТиа_категории PRIMARY KEY (Тип_категории);
+ALTER TABLE CWРўРµС…РЅРѕР»РѕРі
+  ADD CONSTRAINT XPKРўРµС…РЅРѕР»РѕРі PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-CREATE UNIQUE INDEX XAK1Тиа_категории ON CWТип_категории
-(Категорский_цех   ASC);
+ALTER TABLE CWРўРµС…РЅРѕР»РѕРі
+  ADD CONSTRAINT РўРµС…РЅРѕР»РѕРі_СЃРѕРѕС‚РІ_68561289 CHECK (SUBSTR(РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°, 2, 8) = 'РўРµС…РЅРѕР»РѕРі');
 
-ALTER TABLE CWТип_категории
-ADD CONSTRAINT  XAK1Тиа_категории UNIQUE (Категорский_цех);
+ALTER TABLE CWРўРµС…РЅРѕР»РѕРі
+  MODIFY РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_С‚РµС…РЅРѕР»РѕРіР° CONSTRAINT РўРµС…РЅРѕР»РѕРі_СЃРїРµС†_210397916 CHECK (РЎРїРµС†РёР°Р»РёР·Р°С†РёСЏ_С‚РµС…РЅРѕР»РѕРіР° IN
+                                                                           ('РёСЃСЃР»РµРґРѕРІР°РЅРёСЏ', 'РїСЂР°РєС‚РёРєР°'));
 
-ALTER TABLE CWТип_категории
-	ADD CONSTRAINT  Кат_цех_361046675 CHECK  (Номер_цеха || Тип_категории = Категорский_цех);
-
-ALTER TABLE CWТип_категории
-	MODIFY Тип_категории CONSTRAINT  Тип_категории_311194201 CHECK (Тип_категории IN ('Мотоциклы', 'Автобусы', 'Грузовые'));
-
-CREATE INDEX XIE1Тиа_категории ON CWТип_категории
-(Номер_цеха   ASC);
-
-CREATE TABLE CWТокарь
+CREATE TABLE CWРўРѕРєР°СЂСЊ
 (
-	Разряд_токаря        NUMBER(1,0) NOT NULL ,
-	Код_сотрудника       VARCHAR2(15) NOT NULL 
+  Р Р°Р·СЂСЏРґ_С‚РѕРєР°СЂСЏ  NUMBER(1, 0) NOT NULL,
+  РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° VARCHAR2(15) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKТокарь ON CWТокарь
-(Код_сотрудника   ASC);
+CREATE UNIQUE INDEX XPKРўРѕРєР°СЂСЊ
+  ON CWРўРѕРєР°СЂСЊ
+  (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° ASC);
 
-ALTER TABLE CWТокарь
-	ADD CONSTRAINT  XPKТокарь PRIMARY KEY (Код_сотрудника);
+ALTER TABLE CWРўРѕРєР°СЂСЊ
+  ADD CONSTRAINT XPKРўРѕРєР°СЂСЊ PRIMARY KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°);
 
-ALTER TABLE CWТокарь
-	ADD CONSTRAINT  Токарь_соотв_518848096 CHECK  (SUBSTR(Код_сотрудника, 2, 6) = 'Токарь');
+ALTER TABLE CWРўРѕРєР°СЂСЊ
+  ADD CONSTRAINT РўРѕРєР°СЂСЊ_СЃРѕРѕС‚РІ_518848096 CHECK (SUBSTR(РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°, 2, 6) = 'РўРѕРєР°СЂСЊ');
 
-ALTER TABLE CWТокарь
-	MODIFY Разряд_токаря CONSTRAINT  Токарь_разряд_1073954959 CHECK (Разряд_токаря BETWEEN 1 AND 7);
+ALTER TABLE CWРўРѕРєР°СЂСЊ
+  MODIFY Р Р°Р·СЂСЏРґ_С‚РѕРєР°СЂСЏ CONSTRAINT РўРѕРєР°СЂСЊ_СЂР°Р·СЂСЏРґ_1073954959 CHECK (Р Р°Р·СЂСЏРґ_С‚РѕРєР°СЂСЏ BETWEEN 1 AND 7);
 
-CREATE TABLE CWУчасток
+CREATE TABLE CWРЈС‡Р°СЃС‚РѕРє
 (
-	Номер_цеха           VARCHAR2(4) NOT NULL ,
-	Номер_участка        NUMBER(3,0) NOT NULL ,
-	Начальник_участка    VARCHAR2(22) NOT NULL ,
-	Тип_участка          VARCHAR2(9) NOT NULL ,
-	Название_участка     VARCHAR2(13) NOT NULL ,
-	Код_участка          VARCHAR2(7) NOT NULL 
+  РќРѕРјРµСЂ_С†РµС…Р°        VARCHAR2(4)  NOT NULL,
+  РќРѕРјРµСЂ_СѓС‡Р°СЃС‚РєР°     NUMBER(3, 0) NOT NULL,
+  РќР°С‡Р°Р»СЊРЅРёРє_СѓС‡Р°СЃС‚РєР° VARCHAR2(22) NOT NULL,
+  РўРёРї_СѓС‡Р°СЃС‚РєР°       VARCHAR2(9)  NOT NULL,
+  РќР°Р·РІР°РЅРёРµ_СѓС‡Р°СЃС‚РєР°  VARCHAR2(13) NOT NULL,
+  РљРѕРґ_СѓС‡Р°СЃС‚РєР°       VARCHAR2(16) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKУчасток ON CWУчасток
-(Номер_цеха   ASC,Номер_участка   ASC);
+CREATE UNIQUE INDEX XPKРЈС‡Р°СЃС‚РѕРє
+  ON CWРЈС‡Р°СЃС‚РѕРє
+  (РќРѕРјРµСЂ_С†РµС…Р° ASC, РќРѕРјРµСЂ_СѓС‡Р°СЃС‚РєР° ASC);
 
-ALTER TABLE CWУчасток
-	ADD CONSTRAINT  XPKУчасток PRIMARY KEY (Номер_цеха,Номер_участка);
+ALTER TABLE CWРЈС‡Р°СЃС‚РѕРє
+  ADD CONSTRAINT XPKРЈС‡Р°СЃС‚РѕРє PRIMARY KEY (РќРѕРјРµСЂ_С†РµС…Р°, РќРѕРјРµСЂ_СѓС‡Р°СЃС‚РєР°);
 
-CREATE UNIQUE INDEX XAK1Участок ON CWУчасток
-(Начальник_участка   ASC);
+CREATE UNIQUE INDEX XAK1РЈС‡Р°СЃС‚РѕРє
+  ON CWРЈС‡Р°СЃС‚РѕРє
+  (РќР°С‡Р°Р»СЊРЅРёРє_СѓС‡Р°СЃС‚РєР° ASC);
 
-ALTER TABLE CWУчасток
-ADD CONSTRAINT  XAK1Участок UNIQUE (Начальник_участка);
+ALTER TABLE CWРЈС‡Р°СЃС‚РѕРє
+  ADD CONSTRAINT XAK1РЈС‡Р°СЃС‚РѕРє UNIQUE (РќР°С‡Р°Р»СЊРЅРёРє_СѓС‡Р°СЃС‚РєР°);
 
-CREATE UNIQUE INDEX XAK2Участок ON CWУчасток
-(Название_участка   ASC);
+CREATE UNIQUE INDEX XAK2РЈС‡Р°СЃС‚РѕРє
+  ON CWРЈС‡Р°СЃС‚РѕРє
+  (РќР°Р·РІР°РЅРёРµ_СѓС‡Р°СЃС‚РєР° ASC);
 
-ALTER TABLE CWУчасток
-ADD CONSTRAINT  XAK2Участок UNIQUE (Название_участка);
+ALTER TABLE CWРЈС‡Р°СЃС‚РѕРє
+  ADD CONSTRAINT XAK2РЈС‡Р°СЃС‚РѕРє UNIQUE (РќР°Р·РІР°РЅРёРµ_СѓС‡Р°СЃС‚РєР°);
 
-CREATE UNIQUE INDEX XAK3Участок ON CWУчасток
-(Код_участка   ASC);
+CREATE UNIQUE INDEX XAK3РЈС‡Р°СЃС‚РѕРє
+  ON CWРЈС‡Р°СЃС‚РѕРє
+  (РљРѕРґ_СѓС‡Р°СЃС‚РєР° ASC);
 
-ALTER TABLE CWУчасток
-ADD CONSTRAINT  XAK3Участок UNIQUE (Код_участка);
+ALTER TABLE CWРЈС‡Р°СЃС‚РѕРє
+  ADD CONSTRAINT XAK3РЈС‡Р°СЃС‚РѕРє UNIQUE (РљРѕРґ_СѓС‡Р°СЃС‚РєР°);
 
-ALTER TABLE CWУчасток
-	ADD CONSTRAINT  Участок_нач_соотв_2107159506 CHECK  (SUBSTR(Начальник_участка, 1, 7) = 'Участок');
+ALTER TABLE CWРЈС‡Р°СЃС‚РѕРє
+  ADD CONSTRAINT РЈС‡Р°СЃС‚РѕРє_РЅР°С‡_СЃРѕРѕС‚РІ_2107159506 CHECK (SUBSTR(РќР°С‡Р°Р»СЊРЅРёРє_СѓС‡Р°СЃС‚РєР°, 1, 7) = 'РЈС‡Р°СЃС‚РѕРє');
 
-ALTER TABLE CWУчасток
-	ADD CONSTRAINT  Уч_цех_1191576499 CHECK  (Номер_цеха || Номер_участка = Код_участка);
+ALTER TABLE CWРЈС‡Р°СЃС‚РѕРє
+  ADD CONSTRAINT РЈС‡_С†РµС…_1191576499 CHECK (РќРѕРјРµСЂ_С†РµС…Р° || РўРёРї_СѓС‡Р°СЃС‚РєР° || РќРѕРјРµСЂ_СѓС‡Р°СЃС‚РєР° = РљРѕРґ_СѓС‡Р°СЃС‚РєР°);
 
-ALTER TABLE CWУчасток
-	MODIFY Тип_участка CONSTRAINT  Тип_участка_367341758 CHECK (Тип_участка IN ('сборка', 'изготовка'));
+ALTER TABLE CWРЈС‡Р°СЃС‚РѕРє
+  MODIFY РўРёРї_СѓС‡Р°СЃС‚РєР° CONSTRAINT РўРёРї_СѓС‡Р°СЃС‚РєР°_367341758 CHECK (РўРёРї_СѓС‡Р°СЃС‚РєР° IN ('СЃР±РѕСЂРєР°', 'РёР·РіРѕС‚РѕРІРєР°'));
 
-CREATE TABLE CWЦех
+CREATE TABLE CWР¦РµС…
 (
-	Номер_цеха           VARCHAR2(4) NOT NULL ,
-	Начальник_цеха       VARCHAR2(22) NOT NULL ,
-	Название_цеха        VARCHAR2(14) NOT NULL 
+  РќРѕРјРµСЂ_С†РµС…Р°     VARCHAR2(4)  NOT NULL,
+  РќР°С‡Р°Р»СЊРЅРёРє_С†РµС…Р° VARCHAR2(22) NOT NULL,
+  РќР°Р·РІР°РЅРёРµ_С†РµС…Р°  VARCHAR2(14) NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKЦех ON CWЦех
-(Номер_цеха   ASC);
+CREATE UNIQUE INDEX XPKР¦РµС…
+  ON CWР¦РµС…
+  (РќРѕРјРµСЂ_С†РµС…Р° ASC);
 
-ALTER TABLE CWЦех
-	ADD CONSTRAINT  XPKЦех PRIMARY KEY (Номер_цеха);
+ALTER TABLE CWР¦РµС…
+  ADD CONSTRAINT XPKР¦РµС… PRIMARY KEY (РќРѕРјРµСЂ_С†РµС…Р°);
 
-CREATE UNIQUE INDEX XAK2Цех ON CWЦех
-(Начальник_цеха   ASC);
+CREATE UNIQUE INDEX XAK2Р¦РµС…
+  ON CWР¦РµС…
+  (РќР°С‡Р°Р»СЊРЅРёРє_С†РµС…Р° ASC);
 
-ALTER TABLE CWЦех
-ADD CONSTRAINT  XAK2Цех UNIQUE (Начальник_цеха);
+ALTER TABLE CWР¦РµС…
+  ADD CONSTRAINT XAK2Р¦РµС… UNIQUE (РќР°С‡Р°Р»СЊРЅРёРє_С†РµС…Р°);
 
-CREATE UNIQUE INDEX XAK3Цех ON CWЦех
-(Название_цеха   ASC);
+CREATE UNIQUE INDEX XAK3Р¦РµС…
+  ON CWР¦РµС…
+  (РќР°Р·РІР°РЅРёРµ_С†РµС…Р° ASC);
 
-ALTER TABLE CWЦех
-ADD CONSTRAINT  XAK3Цех UNIQUE (Название_цеха);
+ALTER TABLE CWР¦РµС…
+  ADD CONSTRAINT XAK3Р¦РµС… UNIQUE (РќР°Р·РІР°РЅРёРµ_С†РµС…Р°);
 
-ALTER TABLE CWЦех
-	ADD CONSTRAINT  Цех_нач_соотв_1933448208 CHECK  (SUBSTR(Начальник_цеха, 1, 3) = 'Цех');
+ALTER TABLE CWР¦РµС…
+  ADD CONSTRAINT Р¦РµС…_РЅР°С‡_СЃРѕРѕС‚РІ_1933448208 CHECK (SUBSTR(РќР°С‡Р°Р»СЊРЅРёРє_С†РµС…Р°, 1, 3) = 'Р¦РµС…');
 
-ALTER TABLE CWЦех
-	ADD CONSTRAINT  Номер_цеха_905638907 CHECK  ((SUBSTR(Номер_цеха, 1, 1) = 'П'
-OR SUBSTR(Номер_цеха, 1, 1) = 'В')
-AND LENGTH(Номер_цеха) = 4
+ALTER TABLE CWР¦РµС…
+  ADD CONSTRAINT РќРѕРјРµСЂ_С†РµС…Р°_905638907 CHECK ((SUBSTR(РќРѕРјРµСЂ_С†РµС…Р°, 1, 1) = 'Рџ'
+                                              OR SUBSTR(РќРѕРјРµСЂ_С†РµС…Р°, 1, 1) = 'Р’')
+                                             AND LENGTH(РќРѕРјРµСЂ_С†РµС…Р°) = 4
 );
 
-CREATE TABLE CWЭкземпляр_изделия
+CREATE TABLE CWР­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ
 (
-	Номер_экземпляра     NUMBER(6,0) NOT NULL ,
-	Номер_вида_изделия   VARCHAR2(4) NOT NULL 
+  РќРѕРјРµСЂ_СЌРєР·РµРјРїР»СЏСЂР°   NUMBER(6, 0) NOT NULL,
+  РќРѕРјРµСЂ_РІРёРґР°_РёР·РґРµР»РёСЏ VARCHAR2(3)  NOT NULL
 );
 
-CREATE UNIQUE INDEX XPKЭкземпляр_изделия ON CWЭкземпляр_изделия
-(Номер_экземпляра   ASC);
+CREATE UNIQUE INDEX XPKР­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ
+  ON CWР­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ
+  (РќРѕРјРµСЂ_СЌРєР·РµРјРїР»СЏСЂР° ASC);
 
-ALTER TABLE CWЭкземпляр_изделия
-	ADD CONSTRAINT  XPKЭкземпляр_изделия PRIMARY KEY (Номер_экземпляра);
+ALTER TABLE CWР­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ
+  ADD CONSTRAINT XPKР­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ PRIMARY KEY (РќРѕРјРµСЂ_СЌРєР·РµРјРїР»СЏСЂР°);
 
-CREATE INDEX XIE1Экземпляр_изделия ON CWЭкземпляр_изделия
-(Номер_вида_изделия   ASC);
+CREATE INDEX XIE1Р­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ
+  ON CWР­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ
+  (РќРѕРјРµСЂ_РІРёРґР°_РёР·РґРµР»РёСЏ ASC);
 
-CREATE VIEW Представление ( Количество_участков,Номер_участка,Номер_цеха,Название_участка,Тип_участка,Фамилия_начальника,Имя_начальника,Отчество_начальника ) 
-	 AS  SELECT COUNT(u2.Название_участка),u1.Номер_участка,u1.Номер_цеха,u1.Название_участка,u1.Тип_участка,s.Фамилия_сотрудника,s.Имя_сотрудника,s.Отчество_сотрудника
-		FROM CWУчасток u1,CWУчасток u2,CWРуководитель r,CWСотрудник s
-		WHERE u1.Начальник_участка = r.Код_ответств AND s.Код_сотрудника = r.Код_сотрудника
-		GROUP BY u1.Название_участка,
-u1.Номер_участка,
-u1.Номер_цеха,
-u1.Тип_участка,
-s.Фамилия_сотрудника,
-s.Имя_сотрудника,
-s.Отчество_сотрудника
-;
+CREATE VIEW РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ ( РљРѕР»РёС‡РµСЃС‚РІРѕ_СѓС‡Р°СЃС‚РєРѕРІ, РќРѕРјРµСЂ_СѓС‡Р°СЃС‚РєР°, РќРѕРјРµСЂ_С†РµС…Р°, РќР°Р·РІР°РЅРёРµ_СѓС‡Р°СЃС‚РєР°, РўРёРї_СѓС‡Р°СЃС‚РєР°, Р¤Р°РјРёР»РёСЏ_РЅР°С‡Р°Р»СЊРЅРёРєР°, РРјСЏ_РЅР°С‡Р°Р»СЊРЅРёРєР°, РћС‚С‡РµСЃС‚РІРѕ_РЅР°С‡Р°Р»СЊРЅРёРєР° )
+AS
+  SELECT
+    COUNT(u2.РќР°Р·РІР°РЅРёРµ_СѓС‡Р°СЃС‚РєР°),
+    u1.РќРѕРјРµСЂ_СѓС‡Р°СЃС‚РєР°,
+    u1.РќРѕРјРµСЂ_С†РµС…Р°,
+    u1.РќР°Р·РІР°РЅРёРµ_СѓС‡Р°СЃС‚РєР°,
+    u1.РўРёРї_СѓС‡Р°СЃС‚РєР°,
+    s.Р¤Р°РјРёР»РёСЏ_СЃРѕС‚СЂСѓРґРЅРёРєР°,
+    s.РРјСЏ_СЃРѕС‚СЂСѓРґРЅРёРєР°,
+    s.РћС‚С‡РµСЃС‚РІРѕ_СЃРѕС‚СЂСѓРґРЅРёРєР°
+  FROM CWРЈС‡Р°СЃС‚РѕРє u1, CWРЈС‡Р°СЃС‚РѕРє u2, CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ r, CWРЎРѕС‚СЂСѓРґРЅРёРє s
+  WHERE u1.РќР°С‡Р°Р»СЊРЅРёРє_СѓС‡Р°СЃС‚РєР° = r.РљРѕРґ_РѕС‚РІРµС‚СЃС‚РІ AND s.РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР° = r.РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°
+  GROUP BY u1.РќР°Р·РІР°РЅРёРµ_СѓС‡Р°СЃС‚РєР°,
+    u1.РќРѕРјРµСЂ_СѓС‡Р°СЃС‚РєР°,
+    u1.РќРѕРјРµСЂ_С†РµС…Р°,
+    u1.РўРёРї_СѓС‡Р°СЃС‚РєР°,
+    s.Р¤Р°РјРёР»РёСЏ_СЃРѕС‚СЂСѓРґРЅРёРєР°,
+    s.РРјСЏ_СЃРѕС‚СЂСѓРґРЅРёРєР°,
+    s.РћС‚С‡РµСЃС‚РІРѕ_СЃРѕС‚СЂСѓРґРЅРёРєР°;
 
-ALTER TABLE CWАвтобусы
-	ADD (CONSTRAINT O5 FOREIGN KEY (Код_категории) REFERENCES CWКатегория_изделия (Код_категории) ON DELETE CASCADE);
+ALTER TABLE CWРђРІС‚РѕР±СѓСЃС‹
+  ADD (CONSTRAINT O5 FOREIGN KEY (РљРѕРґ_РІРёРґР°) REFERENCES CWР’РёРґ_РёР·РґРµР»РёСЏ (РљРѕРґ_РІРёРґР°) ON DELETE CASCADE);
 
-ALTER TABLE CWБригада
-	ADD (CONSTRAINT R_13 FOREIGN KEY (Бригадир) REFERENCES CWРабочий (Код_сотрудника));
+ALTER TABLE CWР‘СЂРёРіР°РґР°
+  ADD (CONSTRAINT R_13 FOREIGN KEY (Р‘СЂРёРіР°РґРёСЂ) REFERENCES CWР Р°Р±РѕС‡РёР№ (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°));
 
-ALTER TABLE CWБригада
-	ADD (CONSTRAINT R_56 FOREIGN KEY (Мастер) REFERENCES CWРуководитель (Код_ответств));
+ALTER TABLE CWР‘СЂРёРіР°РґР°
+  ADD (CONSTRAINT R_56 FOREIGN KEY (РњР°СЃС‚РµСЂ) REFERENCES CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ (РљРѕРґ_РѕС‚РІРµС‚СЃС‚РІ));
 
-ALTER TABLE CWВид_изделия
-	ADD (CONSTRAINT R_30 FOREIGN KEY (Номер_категории_изделия) REFERENCES CWКатегория_изделия (Номер_категории_изделия));
+ALTER TABLE CWР’РёРґ_РёР·РґРµР»РёСЏ
+  ADD (CONSTRAINT R_77 FOREIGN KEY (РўРёРї_РєР°С‚РµРіРѕСЂРёРё) REFERENCES CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ (РўРёРї_РєР°С‚РµРіРѕСЂРёРё));
 
-ALTER TABLE CWВспомогательный_цех
-	ADD (CONSTRAINT O2 FOREIGN KEY (Номер_цеха) REFERENCES CWЦех (Номер_цеха) ON DELETE CASCADE);
+ALTER TABLE CWР’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№_С†РµС…
+  ADD (CONSTRAINT O2 FOREIGN KEY (РќРѕРјРµСЂ_С†РµС…Р°) REFERENCES CWР¦РµС… (РќРѕРјРµСЂ_С†РµС…Р°) ON DELETE CASCADE);
 
-ALTER TABLE CWГрузовые_автомобили
-	ADD (CONSTRAINT O3 FOREIGN KEY (Код_категории) REFERENCES CWКатегория_изделия (Код_категории) ON DELETE CASCADE);
+ALTER TABLE CWР“СЂСѓР·РѕРІС‹Рµ_Р°РІС‚РѕРјРѕР±РёР»Рё
+  ADD (CONSTRAINT O3 FOREIGN KEY (РљРѕРґ_РІРёРґР°) REFERENCES CWР’РёРґ_РёР·РґРµР»РёСЏ (РљРѕРґ_РІРёРґР°) ON DELETE CASCADE);
 
-ALTER TABLE CWЖурнал
-	ADD (CONSTRAINT R_64 FOREIGN KEY (Номер_экземпляра) REFERENCES CWЭкземпляр_изделия (Номер_экземпляра));
+ALTER TABLE CWР–СѓСЂРЅР°Р»
+  ADD (CONSTRAINT R_64 FOREIGN KEY (РќРѕРјРµСЂ_СЌРєР·РµРјРїР»СЏСЂР°) REFERENCES CWР­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ (РќРѕРјРµСЂ_СЌРєР·РµРјРїР»СЏСЂР°));
 
-ALTER TABLE CWИТП
-	ADD (CONSTRAINT O9 FOREIGN KEY (Код_сотрудника) REFERENCES CWСотрудник (Код_сотрудника));
+ALTER TABLE CWРРўРџ
+  ADD (CONSTRAINT O9 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWРЎРѕС‚СЂСѓРґРЅРёРє (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°));
 
-ALTER TABLE CWИнженер
-	ADD (CONSTRAINT O10 FOREIGN KEY (Код_сотрудника) REFERENCES CWИТП (Код_сотрудника) ON DELETE CASCADE);
+ALTER TABLE CWРР·РіРѕС‚РѕРІРёС‚РµР»СЊРЅС‹Р№_СѓС‡Р°СЃС‚РѕРє
+  ADD (CONSTRAINT R_79 FOREIGN KEY (РљРѕРґ_СѓС‡Р°СЃС‚РєР°) REFERENCES CWРЈС‡Р°СЃС‚РѕРє (РљРѕРґ_СѓС‡Р°СЃС‚РєР°) ON DELETE CASCADE);
 
-ALTER TABLE CWКатегория_изделия
-	ADD (CONSTRAINT R_77 FOREIGN KEY (Тип_категории) REFERENCES CWТип_категории (Тип_категории));
+ALTER TABLE CWРРЅР¶РµРЅРµСЂ
+  ADD (CONSTRAINT O10 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWРРўРџ (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) ON DELETE CASCADE);
 
-ALTER TABLE CWМотоциклы
-	ADD (CONSTRAINT O6 FOREIGN KEY (Код_категории) REFERENCES CWКатегория_изделия (Код_категории) ON DELETE CASCADE);
+ALTER TABLE CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ
+  ADD (CONSTRAINT R_74 FOREIGN KEY (РќРѕРјРµСЂ_С†РµС…Р°) REFERENCES CWРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС… (РќРѕРјРµСЂ_С†РµС…Р°));
 
-ALTER TABLE CWПроизводственный_цех
-	ADD (CONSTRAINT O1 FOREIGN KEY (Номер_цеха) REFERENCES CWЦех (Номер_цеха));
+ALTER TABLE CWРњРѕС‚РѕС†РёРєР»С‹
+  ADD (CONSTRAINT O6 FOREIGN KEY (РљРѕРґ_РІРёРґР°) REFERENCES CWР’РёРґ_РёР·РґРµР»РёСЏ (РљРѕРґ_РІРёРґР°) ON DELETE CASCADE);
 
-ALTER TABLE CWРаботы
-	ADD (CONSTRAINT R_68 FOREIGN KEY (Номер_бригады) REFERENCES CWБригада (Номер_бригады));
+ALTER TABLE CWРџСЂРѕРёР·РІРѕРґСЃС‚РІРµРЅРЅС‹Р№_С†РµС…
+  ADD (CONSTRAINT O1 FOREIGN KEY (РќРѕРјРµСЂ_С†РµС…Р°) REFERENCES CWР¦РµС… (РќРѕРјРµСЂ_С†РµС…Р°));
 
-ALTER TABLE CWРаботы
-	ADD (CONSTRAINT R_75 FOREIGN KEY (Категорский_цех) REFERENCES CWТип_категории (Категорский_цех));
+ALTER TABLE CWР Р°Р±РѕС‚С‹
+  ADD (CONSTRAINT R_68 FOREIGN KEY (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹) REFERENCES CWР‘СЂРёРіР°РґР° (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹));
 
-ALTER TABLE CWРаботы
-	ADD (CONSTRAINT R_48 FOREIGN KEY (Код_участка) REFERENCES CWУчасток (Код_участка));
+ALTER TABLE CWР Р°Р±РѕС‚С‹
+  ADD (CONSTRAINT R_75 FOREIGN KEY (РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС…) REFERENCES CWРљР°С‚РµРіРѕСЂРёСЏ_РёР·РґРµР»РёСЏ (РљР°С‚РµРіРѕСЂСЃРєРёР№_С†РµС…));
 
-ALTER TABLE CWРабочий
-	ADD (CONSTRAINT R_15 FOREIGN KEY (Номер_бригады) REFERENCES CWБригада (Номер_бригады));
+ALTER TABLE CWР Р°Р±РѕС‚С‹
+  ADD (CONSTRAINT R_48 FOREIGN KEY (РљРѕРґ_СѓС‡Р°СЃС‚РєР°) REFERENCES CWРЈС‡Р°СЃС‚РѕРє (РљРѕРґ_СѓС‡Р°СЃС‚РєР°));
 
-ALTER TABLE CWРабочий
-	ADD (CONSTRAINT O8 FOREIGN KEY (Код_сотрудника) REFERENCES CWСотрудник (Код_сотрудника));
+ALTER TABLE CWР Р°Р±РѕС‡РёР№
+  ADD (CONSTRAINT R_15 FOREIGN KEY (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹) REFERENCES CWР‘СЂРёРіР°РґР° (РќРѕРјРµСЂ_Р±СЂРёРіР°РґС‹));
 
-ALTER TABLE CWРуководитель
-	ADD (CONSTRAINT R_55 FOREIGN KEY (Код_сотрудника) REFERENCES CWИТП (Код_сотрудника));
+ALTER TABLE CWР Р°Р±РѕС‡РёР№
+  ADD (CONSTRAINT O8 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWРЎРѕС‚СЂСѓРґРЅРёРє (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°));
 
-ALTER TABLE CWСборщик
-	ADD (CONSTRAINT O13 FOREIGN KEY (Код_сотрудника) REFERENCES CWРабочий (Код_сотрудника) ON DELETE CASCADE);
+ALTER TABLE CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ
+  ADD (CONSTRAINT R_55 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWРРўРџ (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°));
 
-ALTER TABLE CWСварщик
-	ADD (CONSTRAINT O7 FOREIGN KEY (Код_сотрудника) REFERENCES CWРабочий (Код_сотрудника) ON DELETE CASCADE);
+ALTER TABLE CWРЎР±РѕСЂС‰РёРє
+  ADD (CONSTRAINT O13 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWР Р°Р±РѕС‡РёР№ (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) ON DELETE CASCADE);
 
-ALTER TABLE CWСлесарь
-	ADD (CONSTRAINT O15 FOREIGN KEY (Код_сотрудника) REFERENCES CWРабочий (Код_сотрудника) ON DELETE CASCADE);
+ALTER TABLE CWРЎРІР°СЂС‰РёРє
+  ADD (CONSTRAINT O7 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWР Р°Р±РѕС‡РёР№ (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) ON DELETE CASCADE);
 
-ALTER TABLE CWТехник
-	ADD (CONSTRAINT O11 FOREIGN KEY (Код_сотрудника) REFERENCES CWИТП (Код_сотрудника) ON DELETE CASCADE);
+ALTER TABLE CWРЎР»РµСЃР°СЂСЊ
+  ADD (CONSTRAINT O15 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWР Р°Р±РѕС‡РёР№ (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) ON DELETE CASCADE);
 
-ALTER TABLE CWТехнолог
-	ADD (CONSTRAINT O12 FOREIGN KEY (Код_сотрудника) REFERENCES CWИТП (Код_сотрудника) ON DELETE CASCADE);
+ALTER TABLE CWРўРµС…РЅРёРє
+  ADD (CONSTRAINT O11 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWРРўРџ (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) ON DELETE CASCADE);
 
-ALTER TABLE CWТип_категории
-	ADD (CONSTRAINT R_74 FOREIGN KEY (Номер_цеха) REFERENCES CWПроизводственный_цех (Номер_цеха));
+ALTER TABLE CWРўРµС…РЅРѕР»РѕРі
+  ADD (CONSTRAINT O12 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWРРўРџ (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) ON DELETE CASCADE);
 
-ALTER TABLE CWТокарь
-	ADD (CONSTRAINT O14 FOREIGN KEY (Код_сотрудника) REFERENCES CWРабочий (Код_сотрудника) ON DELETE CASCADE);
+ALTER TABLE CWРўРѕРєР°СЂСЊ
+  ADD (CONSTRAINT O14 FOREIGN KEY (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) REFERENCES CWР Р°Р±РѕС‡РёР№ (РљРѕРґ_СЃРѕС‚СЂСѓРґРЅРёРєР°) ON DELETE CASCADE);
 
-ALTER TABLE CWУчасток
-	ADD (CONSTRAINT R_27 FOREIGN KEY (Номер_цеха) REFERENCES CWЦех (Номер_цеха));
+ALTER TABLE CWРЈС‡Р°СЃС‚РѕРє
+  ADD (CONSTRAINT R_27 FOREIGN KEY (РќРѕРјРµСЂ_С†РµС…Р°) REFERENCES CWР¦РµС… (РќРѕРјРµСЂ_С†РµС…Р°));
 
-ALTER TABLE CWУчасток
-	ADD (CONSTRAINT R_57 FOREIGN KEY (Начальник_участка) REFERENCES CWРуководитель (Код_ответств));
+ALTER TABLE CWРЈС‡Р°СЃС‚РѕРє
+  ADD (CONSTRAINT R_57 FOREIGN KEY (РќР°С‡Р°Р»СЊРЅРёРє_СѓС‡Р°СЃС‚РєР°) REFERENCES CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ (РљРѕРґ_РѕС‚РІРµС‚СЃС‚РІ));
 
-ALTER TABLE CWЦех
-	ADD (CONSTRAINT R_58 FOREIGN KEY (Начальник_цеха) REFERENCES CWРуководитель (Код_ответств));
+ALTER TABLE CWР¦РµС…
+  ADD (CONSTRAINT R_58 FOREIGN KEY (РќР°С‡Р°Р»СЊРЅРёРє_С†РµС…Р°) REFERENCES CWР СѓРєРѕРІРѕРґРёС‚РµР»СЊ (РљРѕРґ_РѕС‚РІРµС‚СЃС‚РІ));
 
-ALTER TABLE CWЭкземпляр_изделия
-	ADD (CONSTRAINT R_62 FOREIGN KEY (Номер_вида_изделия) REFERENCES CWВид_изделия (Номер_вида_изделия));
+ALTER TABLE CWР­РєР·РµРјРїР»СЏСЂ_РёР·РґРµР»РёСЏ
+  ADD (CONSTRAINT R_78 FOREIGN KEY (РќРѕРјРµСЂ_РІРёРґР°_РёР·РґРµР»РёСЏ) REFERENCES CWР’РёРґ_РёР·РґРµР»РёСЏ (РќРѕРјРµСЂ_РІРёРґР°_РёР·РґРµР»РёСЏ));
