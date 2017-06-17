@@ -6,9 +6,7 @@ SELECT
 FROM CWКАТЕГОРИЯ_ИЗДЕЛИЯ k
   INNER JOIN CWВИД_ИЗДЕЛИЯ v
     ON v.ТИП_КАТЕГОРИИ = k.ТИП_КАТЕГОРИИ
-WHERE k.ТИП_КАТЕГОРИИ = ANY (SELECT t.ТИП_КАТЕГОРИИ
-                             FROM CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
-                             WHERE t.НОМЕР_ЦЕХА = '&manufactory')
+WHERE k.НОМЕР_ЦЕХА = '&manufactory'
 UNION ALL
 SELECT
   'Всего видов изделий на указанном цеху: ' || COUNT(*),
