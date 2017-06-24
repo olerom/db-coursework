@@ -69,7 +69,7 @@ FROM (
     s.ДОЛЖНОСТЬ_СОТРУДНИКА d,
     s.НОМЕР_ДОГОВОРА
   FROM CWУЧАСТОК u
-    INNER JOIN CWРАБОТЫ r
+    INNER JOIN CWCБОРКА r
       ON r.КОД_УЧАСТКА = u.КОД_УЧАСТКА
     INNER JOIN CWБРИГАДА b
       ON b.НОМЕР_БРИГАДЫ = r.НОМЕР_БРИГАДЫ
@@ -92,7 +92,41 @@ FROM (
         FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
           INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
             ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
-        GROUP BY C.НОМЕР_ЦЕХА))))
+        GROUP BY C.НОМЕР_ЦЕХА)))
+  UNION
+  SELECT
+    DISTINCT
+    s.ФАМИЛИЯ_СОТРУДНИКА   f,
+    s.ИМЯ_СОТРУДНИКА       i,
+    s.ОТЧЕСТВО_СОТРУДНИКА  o,
+    s.ДОЛЖНОСТЬ_СОТРУДНИКА d,
+    s.НОМЕР_ДОГОВОРА
+  FROM CWУЧАСТОК u
+    INNER JOIN CWИЗГОТОВКА r
+      ON r.КОД_УЧАСТКА = u.КОД_УЧАСТКА
+    INNER JOIN CWБРИГАДА b
+      ON b.НОМЕР_БРИГАДЫ = r.НОМЕР_БРИГАДЫ
+    INNER JOIN CWРУКОВОДИТЕЛЬ o
+      ON o.КОД_ОТВЕТСТВ = b.МАСТЕР
+    INNER JOIN CWСОТРУДНИК s
+      ON s.КОД_СОТРУДНИКА = o.КОД_СОТРУДНИКА
+  WHERE u.НОМЕР_ЦЕХА = ANY (
+    SELECT C.НОМЕР_ЦЕХА
+    FROM CWЦЕХ C
+      INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
+        ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
+    GROUP BY C.НОМЕР_ЦЕХА
+    HAVING COUNT(*) = (
+      SELECT MAX(count)
+      FROM (
+        SELECT
+          C.НОМЕР_ЦЕХА,
+          COUNT(*) count
+        FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
+          INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
+            ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
+        GROUP BY C.НОМЕР_ЦЕХА)))
+)
 UNION ALL
 SELECT
   f,
@@ -109,7 +143,7 @@ FROM (
     s.ДОЛЖНОСТЬ_СОТРУДНИКА d,
     s.НОМЕР_ДОГОВОРА
   FROM CWУЧАСТОК u
-    INNER JOIN CWРАБОТЫ r
+    INNER JOIN CWCБОРКА r
       ON r.КОД_УЧАСТКА = u.КОД_УЧАСТКА
     INNER JOIN CWБРИГАДА b
       ON b.НОМЕР_БРИГАДЫ = r.НОМЕР_БРИГАДЫ
@@ -130,7 +164,40 @@ FROM (
         FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
           INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
             ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
-        GROUP BY C.НОМЕР_ЦЕХА))))
+        GROUP BY C.НОМЕР_ЦЕХА)))
+  UNION
+
+  SELECT
+    DISTINCT
+    s.ФАМИЛИЯ_СОТРУДНИКА   f,
+    s.ИМЯ_СОТРУДНИКА       i,
+    s.ОТЧЕСТВО_СОТРУДНИКА  o,
+    s.ДОЛЖНОСТЬ_СОТРУДНИКА d,
+    s.НОМЕР_ДОГОВОРА
+  FROM CWУЧАСТОК u
+    INNER JOIN CWИЗГОТОВКА r
+      ON r.КОД_УЧАСТКА = u.КОД_УЧАСТКА
+    INNER JOIN CWБРИГАДА b
+      ON b.НОМЕР_БРИГАДЫ = r.НОМЕР_БРИГАДЫ
+    INNER JOIN CWСОТРУДНИК s
+      ON s.КОД_СОТРУДНИКА = b.БРИГАДИР
+  WHERE u.НОМЕР_ЦЕХА = ANY (
+    SELECT C.НОМЕР_ЦЕХА
+    FROM CWЦЕХ C
+      INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
+        ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
+    GROUP BY C.НОМЕР_ЦЕХА
+    HAVING COUNT(*) = (
+      SELECT MAX(count)
+      FROM (
+        SELECT
+          C.НОМЕР_ЦЕХА,
+          COUNT(*) count
+        FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
+          INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
+            ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
+        GROUP BY C.НОМЕР_ЦЕХА)))
+)
 UNION ALL
 SELECT
   f,
@@ -147,7 +214,42 @@ FROM (
     s.ДОЛЖНОСТЬ_СОТРУДНИКА d,
     s.НОМЕР_ДОГОВОРА
   FROM CWУЧАСТОК u
-    INNER JOIN CWРАБОТЫ r
+    INNER JOIN CWCБОРКА r
+      ON r.КОД_УЧАСТКА = u.КОД_УЧАСТКА
+    INNER JOIN CWБРИГАДА b
+      ON b.НОМЕР_БРИГАДЫ = r.НОМЕР_БРИГАДЫ
+    INNER JOIN CWРАБОЧИЙ w
+      ON b.НОМЕР_БРИГАДЫ = w.НОМЕР_БРИГАДЫ
+         AND b.БРИГАДИР != w.КОД_СОТРУДНИКА
+    INNER JOIN CWСОТРУДНИК s
+      ON w.КОД_СОТРУДНИКА = s.КОД_СОТРУДНИКА
+  WHERE u.НОМЕР_ЦЕХА = ANY (
+    SELECT C.НОМЕР_ЦЕХА
+    FROM CWЦЕХ C
+      INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
+        ON C.НОМЕР_ЦЕХА = t.НОМЕР_ЦЕХА
+    GROUP BY C.НОМЕР_ЦЕХА
+    HAVING COUNT(*) = (
+      SELECT MAX(count)
+      FROM (
+        SELECT
+          C.НОМЕР_ЦЕХА,
+          COUNT(*) count
+        FROM CWПРОИЗВОДСТВЕННЫЙ_ЦЕХ C
+          INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ t
+            ON t.НОМЕР_ЦЕХА = C.НОМЕР_ЦЕХА
+        GROUP BY C.НОМЕР_ЦЕХА)))
+  UNION
+
+  SELECT
+    DISTINCT
+    s.ФАМИЛИЯ_СОТРУДНИКА   f,
+    s.ИМЯ_СОТРУДНИКА       i,
+    s.ОТЧЕСТВО_СОТРУДНИКА  o,
+    s.ДОЛЖНОСТЬ_СОТРУДНИКА d,
+    s.НОМЕР_ДОГОВОРА
+  FROM CWУЧАСТОК u
+    INNER JOIN CWИЗГОТОВКА r
       ON r.КОД_УЧАСТКА = u.КОД_УЧАСТКА
     INNER JOIN CWБРИГАДА b
       ON b.НОМЕР_БРИГАДЫ = r.НОМЕР_БРИГАДЫ

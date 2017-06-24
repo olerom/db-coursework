@@ -14,11 +14,4 @@ SELECT
 FROM CWВИД_ИЗДЕЛИЯ v
   INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ k
     ON v.ТИП_КАТЕГОРИИ = k.ТИП_КАТЕГОРИИ
-WHERE k.НОМЕР_ЦЕХА = '&manufactory'
-UNION ALL
-SELECT
-  'Всего видов изделий на предприятии: ' || COUNT(*),
-  ''
-FROM CWВИД_ИЗДЕЛИЯ v
-  INNER JOIN CWКАТЕГОРИЯ_ИЗДЕЛИЯ k
-    ON v.ТИП_КАТЕГОРИИ = k.ТИП_КАТЕГОРИИ;
+WHERE k.НОМЕР_ЦЕХА = '&manufactory';
